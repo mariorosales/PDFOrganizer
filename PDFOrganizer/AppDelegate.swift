@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -21,7 +22,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         
-        FolderController.sInstance.AddNewDocumentWithUrl(url)
+        DocumentController.sInstance.AddNewDocumentWithUrl(url) { (result) -> Void in
+            
+            if (result){
+                NSNotificationCenter.defaultCenter().postNotificationName(DocumentImportEven.NewDocumentAdded.rawValue, object: nil)
+            } else {
+                NSNotificationCenter.defaultCenter().postNotificationName(DocumentImportEven.UnableToAddDocument.rawValue, object: nil)
+            }
+        }
         return true
     }
 
