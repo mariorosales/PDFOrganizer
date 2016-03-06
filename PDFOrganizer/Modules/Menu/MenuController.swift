@@ -24,16 +24,7 @@ class MenuController {
     }
     
     func MenuControllerDidShow(){
-
-        let docW = StoreCoordinator.sInstance.createObjectOfType("Document") as NSManagedObject?
-        
-        if let doc = docW as! Document?{
-            
-            doc.dateAdded = NSDate()
-            doc.fileName = "sfshdfkjsdhfksjdfhsdjfhsj"
-            doc.pages = NSNumber(int: 18)
-            StoreCoordinator.sInstance.saveContext()
-        }
+    
     }
     
     func MenuControllerDidHide(){

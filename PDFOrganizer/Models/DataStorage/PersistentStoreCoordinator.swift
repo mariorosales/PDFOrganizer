@@ -61,7 +61,7 @@ class StoreCoordinator {
         return managedObjectContext
     }()
     
-    // MARK: - Core Data Saving support
+    // MARK: - Core Data Saving
     
     func saveContext () {
         if managedObjectContext.hasChanges {
@@ -77,6 +77,9 @@ class StoreCoordinator {
         }
     }
     
+    // MARK: - Core Data Creating
+
+    
     func createObjectOfType(tObject: String) -> NSManagedObject? {
         
         let obj = NSManagedObject(entity: NSEntityDescription.entityForName(tObject,
@@ -86,6 +89,9 @@ class StoreCoordinator {
         return obj
     }
     
+    
+    // MARK: - Core Data Fetching
+
     func getAllOfType(tObject: String) -> [NSManagedObject]? {
         
         var objs = [NSManagedObject]()

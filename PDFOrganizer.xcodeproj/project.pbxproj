@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B51689CA1C8BD65D005C3346 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B51689C81C8BD65D005C3346 /* LaunchScreen.storyboard */; };
+		B51689CB1C8BD65D005C3346 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B51689C91C8BD65D005C3346 /* Main.storyboard */; };
+		B51689CD1C8C3D38005C3346 /* FolderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51689CC1C8C3D38005C3346 /* FolderController.swift */; };
+		B51689CE1C8C3D38005C3346 /* FolderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51689CC1C8C3D38005C3346 /* FolderController.swift */; };
+		B51689D01C8C4357005C3346 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B51689CF1C8C4357005C3346 /* CoreGraphics.framework */; };
 		B5741F6C1C8B8F9A006BEC4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5741F6B1C8B8F9A006BEC4D /* AppDelegate.swift */; };
-		B5741F711C8B8F9A006BEC4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5741F6F1C8B8F9A006BEC4D /* Main.storyboard */; };
 		B5741F761C8B8F9A006BEC4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5741F751C8B8F9A006BEC4D /* Assets.xcassets */; };
-		B5741F791C8B8F9A006BEC4D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5741F771C8B8F9A006BEC4D /* LaunchScreen.storyboard */; };
 		B5741F841C8B8F9A006BEC4D /* PDFOrganizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5741F831C8B8F9A006BEC4D /* PDFOrganizerTests.swift */; };
 		B5741F911C8BA5B9006BEC4D /* CatalogueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5741F901C8BA5B9006BEC4D /* CatalogueViewController.swift */; };
 		B5741FDE1C8BA9EE006BEC4D /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5741FDD1C8BA9EE006BEC4D /* MenuViewController.swift */; };
@@ -48,11 +51,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B51689C81C8BD65D005C3346 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B51689C91C8BD65D005C3346 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		B51689CC1C8C3D38005C3346 /* FolderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderController.swift; sourceTree = "<group>"; };
+		B51689CF1C8C4357005C3346 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		B5741F681C8B8F9A006BEC4D /* PDFOrganizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PDFOrganizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5741F6B1C8B8F9A006BEC4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B5741F701C8B8F9A006BEC4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B5741F751C8B8F9A006BEC4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B5741F781C8B8F9A006BEC4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B5741F7A1C8B8F9A006BEC4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5741F7F1C8B8F9A006BEC4D /* PDFOrganizerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PDFOrganizerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5741F831C8B8F9A006BEC4D /* PDFOrganizerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFOrganizerTests.swift; sourceTree = "<group>"; };
@@ -76,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B51689D01C8C4357005C3346 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,9 +95,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B51689C71C8BD65D005C3346 /* StoryBoards */ = {
+			isa = PBXGroup;
+			children = (
+				B51689C81C8BD65D005C3346 /* LaunchScreen.storyboard */,
+				B51689C91C8BD65D005C3346 /* Main.storyboard */,
+			);
+			path = StoryBoards;
+			sourceTree = "<group>";
+		};
 		B5741F5F1C8B8F9A006BEC4D = {
 			isa = PBXGroup;
 			children = (
+				B51689CF1C8C4357005C3346 /* CoreGraphics.framework */,
 				B5741F6A1C8B8F9A006BEC4D /* PDFOrganizer */,
 				B5741F821C8B8F9A006BEC4D /* PDFOrganizerTests */,
 				B5741F691C8B8F9A006BEC4D /* Products */,
@@ -110,12 +126,11 @@
 		B5741F6A1C8B8F9A006BEC4D /* PDFOrganizer */ = {
 			isa = PBXGroup;
 			children = (
+				B51689C71C8BD65D005C3346 /* StoryBoards */,
 				B5741FC91C8BA973006BEC4D /* Models */,
 				B5741F8E1C8BA5B9006BEC4D /* Modules */,
 				B5741F6B1C8B8F9A006BEC4D /* AppDelegate.swift */,
-				B5741F6F1C8B8F9A006BEC4D /* Main.storyboard */,
 				B5741F751C8B8F9A006BEC4D /* Assets.xcassets */,
-				B5741F771C8B8F9A006BEC4D /* LaunchScreen.storyboard */,
 				B5741F7A1C8B8F9A006BEC4D /* Info.plist */,
 			);
 			path = PDFOrganizer;
@@ -172,6 +187,7 @@
 		B5741FE61C8BC521006BEC4D /* Document */ = {
 			isa = PBXGroup;
 			children = (
+				B51689CC1C8C3D38005C3346 /* FolderController.swift */,
 			);
 			path = Document;
 			sourceTree = "<group>";
@@ -275,7 +291,6 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
 			);
 			mainGroup = B5741F5F1C8B8F9A006BEC4D;
 			productRefGroup = B5741F691C8B8F9A006BEC4D /* Products */;
@@ -293,9 +308,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5741F791C8B8F9A006BEC4D /* LaunchScreen.storyboard in Resources */,
+				B51689CB1C8BD65D005C3346 /* Main.storyboard in Resources */,
 				B5741F761C8B8F9A006BEC4D /* Assets.xcassets in Resources */,
-				B5741F711C8B8F9A006BEC4D /* Main.storyboard in Resources */,
+				B51689CA1C8BD65D005C3346 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,6 +331,7 @@
 				B5741FEA1C8BC685006BEC4D /* PDFOrganizer.xcdatamodeld in Sources */,
 				B5741FE41C8BB86A006BEC4D /* CatalogueController.swift in Sources */,
 				B57420001C8BD04C006BEC4D /* Tag+CoreDataProperties.swift in Sources */,
+				B51689CD1C8C3D38005C3346 /* FolderController.swift in Sources */,
 				B5741FFE1C8BD04C006BEC4D /* UserDocumentTag.swift in Sources */,
 				B5741FF81C8BD04C006BEC4D /* Document+CoreDataProperties.swift in Sources */,
 				B5741FDE1C8BA9EE006BEC4D /* MenuViewController.swift in Sources */,
@@ -336,6 +352,7 @@
 				B57420031C8BD04C006BEC4D /* Tag.swift in Sources */,
 				B5741FFB1C8BD04C006BEC4D /* Document.swift in Sources */,
 				B5741FE21C8BABAA006BEC4D /* MenuController.swift in Sources */,
+				B51689CE1C8C3D38005C3346 /* FolderController.swift in Sources */,
 				B5741FFF1C8BD04C006BEC4D /* UserDocumentTag.swift in Sources */,
 				B5741FFD1C8BD04C006BEC4D /* UserDocumentTag+CoreDataProperties.swift in Sources */,
 				B5741F841C8B8F9A006BEC4D /* PDFOrganizerTests.swift in Sources */,
@@ -357,25 +374,6 @@
 			targetProxy = B5741F801C8B8F9A006BEC4D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		B5741F6F1C8B8F9A006BEC4D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B5741F701C8B8F9A006BEC4D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		B5741F771C8B8F9A006BEC4D /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B5741F781C8B8F9A006BEC4D /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		B5741F861C8B8F9A006BEC4D /* Debug */ = {
