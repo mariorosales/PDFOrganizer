@@ -17,7 +17,11 @@ class CatalogueController: NSObject {
         
         super.init()
         
-        self.loadDocuments()
+        DocumentController.sInstance.ScanNewDocuments { () -> Void in
+            self.loadDocuments()
+
+        }
+
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"updateCatalogue", name: DocumentImportEven.NewDocumentAdded.rawValue, object: nil)
         

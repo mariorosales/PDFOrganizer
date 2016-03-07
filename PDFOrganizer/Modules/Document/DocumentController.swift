@@ -56,6 +56,29 @@ class DocumentController {
         }
     }
     
+    func ScanNewDocuments(completion:(Void) -> Void){
+    
+        let docs = StoreCoordinator.sInstance.getAllOfType("Document")
+        let documents = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+        let enumerator = NSFileManager.defaultManager().enumeratorAtPath(documents)
+        
+        var filenames = [String]()
+        
+        for doc in docs! {
+            filenames.append((doc as! Document).fileName!)
+        }
+        
+        if let _ = enumerator {
+            while let element = enumerator!.nextObject() as? String {
+                if (element.hasSuffix("pdf") ||  element.hasSuffix("PDF")) {
+                    
+                }
+            }
+        }
+
+        completion()
+    }
+    
     func getDocumentNumberOfPagesWithFileName(fileName: String) -> Int32 {
         
         let documents = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
