@@ -24,8 +24,11 @@ class CatalogueViewController: UIViewController, UICollectionViewDataSource, UIC
         self.catalogueController = CatalogueController(vC: self)
         super.viewDidLoad()
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         if let _ = self.documentConstraint {
-        
             self.documentConstraint!.constant = self.view.frame.size.height
         }
     }
@@ -91,7 +94,7 @@ class CatalogueViewController: UIViewController, UICollectionViewDataSource, UIC
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("documentCell", forIndexPath: indexPath) as! DocumentCell        
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("documentCell", forIndexPath: indexPath) as! CatalogueCell
         
         let doc = self.catalogueController.documents![indexPath.row] as Document
 

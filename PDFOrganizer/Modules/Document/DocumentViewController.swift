@@ -68,6 +68,9 @@ class DocumentViewController: UIViewController, UICollectionViewDataSource {
             if let _ = self.document!.fileName{
                 DocumentController.sInstance.getDocumentPageThumbnailWithFileName(self.document!.fileName!, page: (indexPath.row+1), width: cell.frame.size.width, completion: { (thumbnail) -> Void in
                     
+                    collectionView.addGestureRecognizer(cell.scrollView!.pinchGestureRecognizer!)
+                    collectionView.addGestureRecognizer(cell.scrollView!.panGestureRecognizer)
+                    
                     cell.thumbnailImageView!.image = thumbnail
                     
                 });
@@ -79,6 +82,13 @@ class DocumentViewController: UIViewController, UICollectionViewDataSource {
         return cell
     }
     
+     func collectionView(collectionView: UICollectionView, didEndDisplayingCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath){
+       
+        let docCell = cell as! DocumentCell
+        collectionView.removeGestureRecognizer(docCell.scrollView!.pinchGestureRecognizer!)
+        collectionView.removeGestureRecognizer(docCell.scrollView!.panGestureRecognizer)
+        
+    }
     
     
 }

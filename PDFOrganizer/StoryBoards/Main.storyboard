@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -28,7 +27,7 @@
                                     <inset key="sectionInset" minX="20" minY="20" maxX="20" maxY="20"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="documentCell" id="tDI-On-hDQ" customClass="DocumentCell" customModule="PDFOrganizer" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="documentCell" id="tDI-On-hDQ" customClass="CatalogueCell" customModule="PDFOrganizer" customModuleProvider="target">
                                         <rect key="frame" x="20" y="20" width="150" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -162,7 +161,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="0.0" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="2r3-Gd-1Qa" firstAttribute="top" secondItem="27g-70-3WT" secondAttribute="bottom" id="0nD-ii-Byk"/>
                             <constraint firstAttribute="trailing" secondItem="2r3-Gd-1Qa" secondAttribute="trailing" id="21w-vE-9dy"/>
@@ -203,11 +202,11 @@
                         <viewControllerLayoutGuide type="top" id="Adc-wI-vLT"/>
                         <viewControllerLayoutGuide type="bottom" id="0xF-cD-WSf"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="N5D-MF-uMy">
+                    <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="N5D-MF-uMy">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eM8-z6-4cN">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eM8-z6-4cN">
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="1004"/>
                                 <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="sMn-sH-SZq">
@@ -224,20 +223,38 @@
                                             <rect key="frame" x="0.0" y="0.0" width="768" height="1004"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vks-bm-rSy">
+                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.5" maximumZoomScale="3" translatesAutoresizingMaskIntoConstraints="NO" id="FD7-Ea-agt">
                                                     <rect key="frame" x="0.0" y="10" width="768" height="984"/>
-                                                </imageView>
+                                                    <subviews>
+                                                        <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vks-bm-rSy">
+                                                            <rect key="frame" x="0.0" y="0.0" width="768" height="984"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="768" id="BlJ-c7-uA5"/>
+                                                                <constraint firstAttribute="height" constant="984" id="L4U-GA-uCy"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="768" id="GBn-fb-oNQ"/>
+                                                        <constraint firstItem="vks-bm-rSy" firstAttribute="top" secondItem="FD7-Ea-agt" secondAttribute="top" id="IpR-Uc-vqk"/>
+                                                        <constraint firstAttribute="bottom" secondItem="vks-bm-rSy" secondAttribute="bottom" id="S2a-df-ON1"/>
+                                                        <constraint firstAttribute="trailing" secondItem="vks-bm-rSy" secondAttribute="trailing" id="YEI-ph-VFo"/>
+                                                        <constraint firstAttribute="height" constant="984" id="gRZ-u9-PCE"/>
+                                                        <constraint firstItem="vks-bm-rSy" firstAttribute="leading" secondItem="FD7-Ea-agt" secondAttribute="leading" id="r9P-cf-3A1"/>
+                                                    </constraints>
+                                                </scrollView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="vks-bm-rSy" secondAttribute="trailing" id="1oA-td-2vH"/>
-                                            <constraint firstItem="vks-bm-rSy" firstAttribute="top" secondItem="Lim-Li-DY0" secondAttribute="top" constant="10" id="B9g-eK-PWb"/>
-                                            <constraint firstAttribute="bottom" secondItem="vks-bm-rSy" secondAttribute="bottom" constant="10" id="JAL-X7-KH1"/>
-                                            <constraint firstItem="vks-bm-rSy" firstAttribute="leading" secondItem="Lim-Li-DY0" secondAttribute="leading" id="Zfq-23-fMp"/>
+                                            <constraint firstAttribute="bottom" secondItem="FD7-Ea-agt" secondAttribute="bottom" constant="10" id="8Nj-EY-TuG"/>
+                                            <constraint firstItem="FD7-Ea-agt" firstAttribute="leading" secondItem="Lim-Li-DY0" secondAttribute="leading" id="b5l-1r-iM6"/>
+                                            <constraint firstItem="FD7-Ea-agt" firstAttribute="top" secondItem="Lim-Li-DY0" secondAttribute="top" constant="10" id="w44-P9-lWb"/>
+                                            <constraint firstAttribute="trailing" secondItem="FD7-Ea-agt" secondAttribute="trailing" id="yOK-xd-Quh"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="scrollView" destination="FD7-Ea-agt" id="L8g-Dc-xdq"/>
                                             <outlet property="thumbnailImageView" destination="vks-bm-rSy" id="Evj-mo-Jcx"/>
                                         </connections>
                                     </collectionViewCell>
@@ -248,11 +265,11 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g4n-VH-6ak">
-                                <rect key="frame" x="718" y="0.0" width="50" height="50"/>
+                                <rect key="frame" x="708" y="20" width="50" height="50"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="221-WD-D2P"/>
-                                    <constraint firstAttribute="height" constant="50" id="E3v-Z0-ENa"/>
+                                    <constraint firstAttribute="height" constant="50" id="1nM-jC-SWg"/>
+                                    <constraint firstAttribute="width" constant="50" id="hX8-hg-7ku"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="23"/>
                                 <state key="normal" title="X"/>
@@ -263,12 +280,8 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="eM8-z6-4cN" secondAttribute="trailing" id="LUF-N9-jdU"/>
-                            <constraint firstItem="eM8-z6-4cN" firstAttribute="leading" secondItem="N5D-MF-uMy" secondAttribute="leading" id="QeH-bf-lw4"/>
-                            <constraint firstAttribute="trailing" secondItem="g4n-VH-6ak" secondAttribute="trailing" id="SjQ-yB-ufO"/>
-                            <constraint firstAttribute="bottom" secondItem="eM8-z6-4cN" secondAttribute="bottom" id="VJX-uO-vJl"/>
-                            <constraint firstAttribute="topMargin" secondItem="g4n-VH-6ak" secondAttribute="top" id="XTu-1r-RCc"/>
-                            <constraint firstItem="eM8-z6-4cN" firstAttribute="top" secondItem="N5D-MF-uMy" secondAttribute="top" id="h6J-ow-WVr"/>
+                            <constraint firstItem="g4n-VH-6ak" firstAttribute="top" secondItem="N5D-MF-uMy" secondAttribute="topMargin" constant="20" id="Asn-n1-ySt"/>
+                            <constraint firstAttribute="trailing" secondItem="g4n-VH-6ak" secondAttribute="trailing" constant="10" id="J9v-dB-SNz"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

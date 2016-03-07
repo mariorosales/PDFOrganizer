@@ -51,6 +51,11 @@ class MenuViewController : UIViewController, UITableViewDataSource, UITableViewD
         
         self.menuController = MenuController(vC: self)
         
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
         self.hideMenu { () -> Void in
             if let _ = self.menuController{
                 self.menuController!.MenuControllerDidHide()
