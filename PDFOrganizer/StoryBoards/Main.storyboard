@@ -209,7 +209,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eM8-z6-4cN">
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="1004"/>
-                                <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="0.32728987068965515" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="sMn-sH-SZq">
                                     <size key="itemSize" width="768" height="1004"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -225,16 +225,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vks-bm-rSy">
-                                                    <rect key="frame" x="0.0" y="0.0" width="768" height="1004"/>
+                                                    <rect key="frame" x="0.0" y="10" width="768" height="984"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <color key="backgroundColor" red="0.0" green="1" blue="0.50196081400000003" alpha="0.41726831896551725" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="vks-bm-rSy" secondAttribute="trailing" id="1oA-td-2vH"/>
-                                            <constraint firstItem="vks-bm-rSy" firstAttribute="top" secondItem="Lim-Li-DY0" secondAttribute="top" id="B9g-eK-PWb"/>
-                                            <constraint firstAttribute="bottom" secondItem="vks-bm-rSy" secondAttribute="bottom" id="JAL-X7-KH1"/>
+                                            <constraint firstItem="vks-bm-rSy" firstAttribute="top" secondItem="Lim-Li-DY0" secondAttribute="top" constant="10" id="B9g-eK-PWb"/>
+                                            <constraint firstAttribute="bottom" secondItem="vks-bm-rSy" secondAttribute="bottom" constant="10" id="JAL-X7-KH1"/>
                                             <constraint firstItem="vks-bm-rSy" firstAttribute="leading" secondItem="Lim-Li-DY0" secondAttribute="leading" id="Zfq-23-fMp"/>
                                         </constraints>
                                         <connections>
@@ -248,7 +248,8 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g4n-VH-6ak">
-                                <rect key="frame" x="719" y="0.0" width="50" height="50"/>
+                                <rect key="frame" x="718" y="0.0" width="50" height="50"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="221-WD-D2P"/>
                                     <constraint firstAttribute="height" constant="50" id="E3v-Z0-ENa"/>
@@ -260,11 +261,11 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="0.42419181034482761" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="eM8-z6-4cN" secondAttribute="trailing" id="LUF-N9-jdU"/>
                             <constraint firstItem="eM8-z6-4cN" firstAttribute="leading" secondItem="N5D-MF-uMy" secondAttribute="leading" id="QeH-bf-lw4"/>
-                            <constraint firstAttribute="trailing" secondItem="g4n-VH-6ak" secondAttribute="trailing" constant="-1" id="SjQ-yB-ufO"/>
+                            <constraint firstAttribute="trailing" secondItem="g4n-VH-6ak" secondAttribute="trailing" id="SjQ-yB-ufO"/>
                             <constraint firstAttribute="bottom" secondItem="eM8-z6-4cN" secondAttribute="bottom" id="VJX-uO-vJl"/>
                             <constraint firstAttribute="topMargin" secondItem="g4n-VH-6ak" secondAttribute="top" id="XTu-1r-RCc"/>
                             <constraint firstItem="eM8-z6-4cN" firstAttribute="top" secondItem="N5D-MF-uMy" secondAttribute="top" id="h6J-ow-WVr"/>

@@ -53,8 +53,8 @@ class DocumentViewController: UIViewController, UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if let _ = self.document{
-            if let _ = self.document!.fileName{
-                return Int(DocumentController.sInstance.getDocumentNumberOfPagesWithFileName(self.document!.fileName!))
+            if let _ = self.document!.pages{
+                return Int(self.document!.pages!)
             }
         }
         return 0
