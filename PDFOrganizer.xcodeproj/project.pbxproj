@@ -14,6 +14,8 @@
 		B51689D01C8C4357005C3346 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B51689CF1C8C4357005C3346 /* CoreGraphics.framework */; };
 		B51689D31C8C5E71005C3346 /* DocumentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51689D21C8C5E71005C3346 /* DocumentCell.swift */; };
 		B51689D41C8C5E71005C3346 /* DocumentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51689D21C8C5E71005C3346 /* DocumentCell.swift */; };
+		B51689D61C8CC442005C3346 /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51689D51C8CC442005C3346 /* DocumentViewController.swift */; };
+		B51689D71C8CC442005C3346 /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51689D51C8CC442005C3346 /* DocumentViewController.swift */; };
 		B5741F6C1C8B8F9A006BEC4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5741F6B1C8B8F9A006BEC4D /* AppDelegate.swift */; };
 		B5741F761C8B8F9A006BEC4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5741F751C8B8F9A006BEC4D /* Assets.xcassets */; };
 		B5741F841C8B8F9A006BEC4D /* PDFOrganizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5741F831C8B8F9A006BEC4D /* PDFOrganizerTests.swift */; };
@@ -58,6 +60,7 @@
 		B51689CC1C8C3D38005C3346 /* DocumentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentController.swift; sourceTree = "<group>"; };
 		B51689CF1C8C4357005C3346 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		B51689D21C8C5E71005C3346 /* DocumentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentCell.swift; sourceTree = "<group>"; };
+		B51689D51C8CC442005C3346 /* DocumentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
 		B5741F681C8B8F9A006BEC4D /* PDFOrganizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PDFOrganizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5741F6B1C8B8F9A006BEC4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5741F751C8B8F9A006BEC4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -200,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				B51689CC1C8C3D38005C3346 /* DocumentController.swift */,
+				B51689D51C8CC442005C3346 /* DocumentViewController.swift */,
 			);
 			path = Document;
 			sourceTree = "<group>";
@@ -290,6 +294,7 @@
 				TargetAttributes = {
 					B5741F671C8B8F9A006BEC4D = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = Z8RRQR2TKE;
 					};
 					B5741F7E1C8B8F9A006BEC4D = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -345,6 +350,7 @@
 				B57420001C8BD04C006BEC4D /* Tag+CoreDataProperties.swift in Sources */,
 				B51689D31C8C5E71005C3346 /* DocumentCell.swift in Sources */,
 				B51689CD1C8C3D38005C3346 /* DocumentController.swift in Sources */,
+				B51689D61C8CC442005C3346 /* DocumentViewController.swift in Sources */,
 				B5741FFE1C8BD04C006BEC4D /* UserDocumentTag.swift in Sources */,
 				B5741FF81C8BD04C006BEC4D /* Document+CoreDataProperties.swift in Sources */,
 				B5741FDE1C8BA9EE006BEC4D /* MenuViewController.swift in Sources */,
@@ -362,6 +368,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B51689D71C8CC442005C3346 /* DocumentViewController.swift in Sources */,
 				B57420031C8BD04C006BEC4D /* Tag.swift in Sources */,
 				B5741FFB1C8BD04C006BEC4D /* Document.swift in Sources */,
 				B5741FE21C8BABAA006BEC4D /* MenuController.swift in Sources */,
@@ -477,10 +484,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = PDFOrganizer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Company.PDFOrganizer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -488,10 +498,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = PDFOrganizer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Company.PDFOrganizer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

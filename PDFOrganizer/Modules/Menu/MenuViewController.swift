@@ -21,15 +21,25 @@ public enum MenuOptions{
     case MenuOptionCatalogue
 }
 
+protocol MenuViewControllerDelegate {
+    
+    func MenuDidShow(menu: MenuViewController)
+    func MenuDidHide(menu: MenuViewController)
+
+}
+
 class MenuViewController : UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var menuController: MenuController?
     var menuStatus : MenuStates = .MenuClose
     
+    var delegate: MenuViewControllerDelegate?
+    
     @IBOutlet weak var openCloseButton : UIButton?
     @IBOutlet weak var menuOptionsView : UIView?
     @IBOutlet weak var tableView : UITableView?
-    
+    @IBOutlet weak var titleLabel : UILabel?
+        
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -39,7 +49,7 @@ class MenuViewController : UIViewController, UITableViewDataSource, UITableViewD
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        menuController = MenuController(vC: self)
+        self.menuController = MenuController(vC: self)
         
         self.hideMenu { () -> Void in
             if let _ = self.menuController{
@@ -55,7 +65,10 @@ class MenuViewController : UIViewController, UITableViewDataSource, UITableViewD
         if let _ = self.openCloseButton{
             UIView.animateWithDuration(0.3, animations: { () -> Void in
                 
-                self.view.transform = CGAffineTransformMakeTranslation(-(self.view.frame.size.width - self.openCloseButton!.frame.size.width), 0)
+                if let _ = self.delegate{
+                    self.delegate!.MenuDidHide(self)
+                }
+                
                 self.openCloseButton!.setTitle(">", forState: UIControlState.Normal)
                 if let _ = self.menuOptionsView{
                     self.menuOptionsView!.alpha = 0.0
@@ -73,7 +86,10 @@ class MenuViewController : UIViewController, UITableViewDataSource, UITableViewD
     func showMenu(completion: (Void) -> Void){
         
         UIView.animateWithDuration(0.3, animations: { () -> Void in
-            self.view.transform = CGAffineTransformIdentity
+            
+            if let _ = self.delegate{
+                self.delegate!.MenuDidShow(self)
+            }
             
             if let _ = self.openCloseButton{
                 self.openCloseButton!.setTitle("<", forState: UIControlState.Normal)
