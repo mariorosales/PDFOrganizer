@@ -88,8 +88,11 @@ class CatalogueViewController: UIViewController, UICollectionViewDataSource, UIC
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-       return self.catalogueController.documents!.count
-        
+        if let _ = self.catalogueController.documents {
+            return self.catalogueController.documents!.count
+        } else {
+            return 0
+        }
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {

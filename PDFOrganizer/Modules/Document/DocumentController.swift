@@ -57,26 +57,46 @@ class DocumentController {
     }
     
     func ScanNewDocuments(completion:(Void) -> Void){
-    
-        let docs = StoreCoordinator.sInstance.getAllOfType("Document")
-        let documents = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
-        let enumerator = NSFileManager.defaultManager().enumeratorAtPath(documents)
         
-        var filenames = [String]()
-        
-        for doc in docs! {
-            filenames.append((doc as! Document).fileName!)
-        }
-        
-        if let _ = enumerator {
-            while let element = enumerator!.nextObject() as? String {
-                if (element.hasSuffix("pdf") ||  element.hasSuffix("PDF")) {
-                    
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), {
+            
+            let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+            let enumerator = NSFileManager.defaultManager().enumeratorAtPath(documentsPath)
+            
+            var filenames = [String]()
+            
+            let allDatabaseDocs = StoreCoordinator.sInstance.getAllOfType("Document")
+                        
+            for doc in allDatabaseDocs! {
+                filenames.append((doc as! Document).fileName!.lowercaseString)
+            }
+            
+            if let _ = enumerator {
+                while let element = enumerator!.nextObject() as? String {
+                    let elm = element.lowercaseString.componentsSeparatedByString("/").last!
+                    if (elm.hasSuffix("pdf")) {
+                        if (!filenames.contains(elm)){
+                            // Store in Core Data
+                            if let doc = StoreCoordinator.sInstance.createObjectOfType("Document") as! Document?{
+                                
+                                let absolutePath = documentsPath.stringByAppendingString("/" + element)
+
+                                doc.dateAdded = NSDate()
+                                doc.fileName = element
+                                doc.pages = NSNumber(int: self.getDocumentNumberOfPages(NSURL(fileURLWithPath: absolutePath)))
+                                StoreCoordinator.sInstance.saveContext()
+                                
+                                return
+                            }
+                        }
+                    }
                 }
             }
-        }
 
-        completion()
+            dispatch_async(dispatch_get_main_queue(),{
+                completion()
+            })
+        })
     }
     
     func getDocumentNumberOfPagesWithFileName(fileName: String) -> Int32 {

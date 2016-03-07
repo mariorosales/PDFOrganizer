@@ -16,17 +16,20 @@ class CatalogueController: NSObject {
     init(vC : CatalogueViewController?){
         
         super.init()
+                
+        if (vC != nil) {
+            
+            if let _ = vC{
+                self.vController = vC!
+            }
         
-        DocumentController.sInstance.ScanNewDocuments { () -> Void in
-            self.loadDocuments()
-
-        }
-
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"updateCatalogue", name: DocumentImportEven.NewDocumentAdded.rawValue, object: nil)
-        
-        if let _ = vC{
-            self.vController = vC!
+            DocumentController.sInstance.ScanNewDocuments { () -> Void in
+                
+                self.updateCatalogue()
+            }
+            
+            NSNotificationCenter.defaultCenter().addObserver(self, selector:"updateCatalogue", name: DocumentImportEven.NewDocumentAdded.rawValue, object: nil)
+            
         }
     }
     
