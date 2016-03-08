@@ -28,6 +28,8 @@ class CatalogueController: NSObject {
                 self.updateCatalogue()
             }
             
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateCatalogue", name: DocumentImportEven.NewDocumentAdded.rawValue, object: nil)
+            
         }
     }
     
