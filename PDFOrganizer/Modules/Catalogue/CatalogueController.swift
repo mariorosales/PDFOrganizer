@@ -28,17 +28,6 @@ class CatalogueController: NSObject {
                 self.updateCatalogue()
             }
             
-            NSNotificationCenter.defaultCenter().addObserver(self, selector:"updateCatalogue", name: DocumentImportEven.NewDocumentAdded.rawValue, object: nil)
-            
-        }
-    }
-    
-    func loadDocuments(){
-        
-        if let docs = StoreCoordinator.sInstance.getAllOfType("Document"){
-            self.documents = docs as? [Document]
-        } else {
-            self.documents = [Document]()
         }
     }
     
@@ -55,15 +44,27 @@ class CatalogueController: NSObject {
         
     func updateCatalogue(){
         
-        self.loadDocuments()
-        
-        dispatch_async(dispatch_get_main_queue(),{
-
-            if let _ = self.vController {
-                if let collectionV = self.vController!.collectionView{
-                    collectionV.reloadData()
+        self.loadDocuments { () -> Void in
+            
+            dispatch_async(dispatch_get_main_queue(),{
+                
+                if let _ = self.vController {
+                    if let collectionV = self.vController!.collectionView{
+                        collectionV.reloadData()
+                    }
                 }
-            }
-        })
+            })
+        }
     }
+    
+    func loadDocuments(complete : (Void) -> Void){
+        
+        if let docs = StoreCoordinator.sInstance.getAllOfType("Document"){
+            self.documents = docs as? [Document]
+        } else {
+            self.documents = [Document]()
+        }
+        complete()
+    }
+    
 }
