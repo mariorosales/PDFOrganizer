@@ -8,9 +8,6 @@
 
 import UIKit
 
-public enum PageNotification : String{
-    case BetterQuality
-}
 
 class DocumentCell: UICollectionViewCell, UIScrollViewDelegate, UIGestureRecognizerDelegate {
     
@@ -36,12 +33,16 @@ class DocumentCell: UICollectionViewCell, UIScrollViewDelegate, UIGestureRecogni
     
     func scrollViewDidZoom(scrollView: UIScrollView) {
         
-        if let _ = self.indexPath{
-            NSNotificationCenter.defaultCenter().postNotificationName(PageNotification.BetterQuality.rawValue, object: self.indexPath!)
-        }
-        
+   
     }
     
     func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView?, atScale scale: CGFloat) {
+        
+        DocumentController.sInstance.updatePageQualityWithImageView(self.thumbnailImageView, completion: { (thumbnail) -> Void in
+            if let _ = self.thumbnailImageView{
+                self.thumbnailImageView!.image = thumbnail
+            }
+            
+        })
     }
 }

@@ -153,15 +153,7 @@ class MenuViewController : UIViewController, UITableViewDataSource, UITableViewD
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if let documents = StoreCoordinator.sInstance.getAllOfType("Document"){
-        
-            return documents.count
-            
-        } else {
-            
-            return 0
-        }
-
+        return 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

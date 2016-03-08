@@ -84,13 +84,11 @@ class DocumentController {
                                 doc.dateAdded = NSDate()
                                 doc.fileName = element
                                 doc.pages = NSNumber(int: self.getDocumentNumberOfPages(NSURL(fileURLWithPath: absolutePath)))
-                                StoreCoordinator.sInstance.saveContext()
-                                
-                                return
                             }
                         }
                     }
                 }
+                StoreCoordinator.sInstance.saveContext()
             }
 
             dispatch_async(dispatch_get_main_queue(),{
@@ -112,6 +110,10 @@ class DocumentController {
         pdfDoc = CGPDFDocumentCreateWithURL(pdfURL)
         let numberOfPages = CGPDFDocumentGetNumberOfPages(pdfDoc)
         return Int32(numberOfPages)
+    }
+    
+    func updatePageQualityWithImageView(imageView : UIImageView? , completion : (thumbnail : UIImage) -> Void) {
+    
     }
     
     func getDocumentPageThumbnailWithFileName(fileName: String?, page : Int ,width: CGFloat , completion:(thumbnail : UIImage) -> Void ){
