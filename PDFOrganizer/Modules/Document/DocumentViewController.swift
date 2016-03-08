@@ -86,9 +86,10 @@ class DocumentViewController: UIViewController, UICollectionViewDataSource, UIPo
     
      func collectionView(collectionView: UICollectionView, didEndDisplayingCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath){
        
-        let docCell = cell as! DocumentCell
-        collectionView.removeGestureRecognizer(docCell.scrollView!.pinchGestureRecognizer!)
-        collectionView.removeGestureRecognizer(docCell.scrollView!.panGestureRecognizer)
+        if let docCell = cell as? DocumentCell {
+            collectionView.removeGestureRecognizer(docCell.scrollView!.pinchGestureRecognizer!)
+            collectionView.removeGestureRecognizer(docCell.scrollView!.panGestureRecognizer)
+        }
         
     }
     
