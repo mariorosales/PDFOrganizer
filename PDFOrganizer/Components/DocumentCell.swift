@@ -8,6 +8,11 @@
 
 import UIKit
 
+public enum CellEventNotification : String {
+
+    case LongPress
+}
+
 
 class DocumentCell: UICollectionViewCell, UIScrollViewDelegate, UIGestureRecognizerDelegate {
     
@@ -17,6 +22,14 @@ class DocumentCell: UICollectionViewCell, UIScrollViewDelegate, UIGestureRecogni
     
     var indexPath : NSIndexPath?
     
+    var relativeX : CGFloat?
+    var relativeY : CGFloat?
+    
+    var posX : CGFloat?
+    var posY : CGFloat?
+    
+    var gesture : UILongPressGestureRecognizer?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -24,6 +37,13 @@ class DocumentCell: UICollectionViewCell, UIScrollViewDelegate, UIGestureRecogni
         self.scrollView!.minimumZoomScale = 1
         self.scrollView!.maximumZoomScale = 3
         
+        self.addGesture()
+
+    }
+    
+    func addGesture(){
+        self.gesture = UILongPressGestureRecognizer(target: self, action: "longPressAction:")
+        self.addGestureRecognizer(self.gesture!)
     }
     
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
@@ -44,5 +64,30 @@ class DocumentCell: UICollectionViewCell, UIScrollViewDelegate, UIGestureRecogni
             }
             
         })
+    }
+    
+    func longPressAction(gesture : UILongPressGestureRecognizer){
+        
+        if let _ = self.thumbnailImageView {
+            
+            let width = self.thumbnailImageView!.frame.size.width
+            let height = self.thumbnailImageView!.frame.size.height
+            self.posX = gesture.locationInView(self).x
+            self.posY = gesture.locationInView(self).y
+            
+            self.relativeX = (self.posX!/width) * self.scrollView!.zoomScale
+            self.relativeY = (self.posY!/height) * self.scrollView!.zoomScale
+            
+            for recognizer in self.gestureRecognizers! {
+                self.removeGestureRecognizer(recognizer as UIGestureRecognizer)
+            }
+            
+            NSObject.cancelPreviousPerformRequestsWithTarget(self)
+            self.performSelector("postNotificationWithPosition:", withObject: self, afterDelay: 0.3)
+        }
+    }
+    
+    func postNotificationWithPosition(cell :DocumentCell){
+        NSNotificationCenter.defaultCenter().postNotificationName(CellEventNotification.LongPress.rawValue, object: cell)
     }
 }

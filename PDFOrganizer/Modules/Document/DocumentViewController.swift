@@ -14,16 +14,18 @@ protocol DocumentViewControllerDelegate{
     
 }
 
-class DocumentViewController: UIViewController, UICollectionViewDataSource {
+class DocumentViewController: UIViewController, UICollectionViewDataSource, UIPopoverPresentationControllerDelegate {
     
     var document : Document?
     var delegate : DocumentViewControllerDelegate?
+    var selectedDocumentCell : DocumentCell?
     
     @IBOutlet weak var collectionView : UICollectionView?
 
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "longPressInPage:", name: CellEventNotification.LongPress.rawValue, object: nil)
         
     }
     
@@ -90,5 +92,36 @@ class DocumentViewController: UIViewController, UICollectionViewDataSource {
         
     }
     
+    //MARK: - Notification Method
     
+    func longPressInPage(notification: NSNotification){
+        
+        if let cell = notification.object as? DocumentCell {
+            
+            self.selectedDocumentCell = cell
+            
+            let tableViewController = UITableViewController()
+            tableViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
+            tableViewController.preferredContentSize = CGSizeMake(400, 400)
+            
+            presentViewController(tableViewController, animated: true, completion: nil)
+            
+            if let popoverPC = tableViewController.popoverPresentationController{
+                popoverPC.delegate = self
+                popoverPC.sourceView = self.collectionView!
+                popoverPC.sourceRect = CGRectMake(cell.posX!,cell.posY!, 10, 10)
+            }
+        
+        }
+    }
+    
+    func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController) {
+        
+        if let _ = self.selectedDocumentCell{
+        
+            self.selectedDocumentCell!.addGesture()
+            self.selectedDocumentCell = nil
+        }
+    }
+
 }
