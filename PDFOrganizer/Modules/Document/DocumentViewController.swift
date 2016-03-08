@@ -109,7 +109,7 @@ class DocumentViewController: UIViewController, UICollectionViewDataSource, UIPo
             
             if let popoverPC = tableViewController.popoverPresentationController{
                 popoverPC.delegate = self
-                popoverPC.sourceView = self.collectionView!
+                popoverPC.sourceView = cell.contentView
                 popoverPC.sourceRect = CGRectMake(cell.posX!,cell.posY!, 10, 10)
             }
         
