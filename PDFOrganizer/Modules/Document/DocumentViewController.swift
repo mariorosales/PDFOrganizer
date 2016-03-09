@@ -92,6 +92,8 @@ class DocumentViewController: UIViewController, UICollectionViewDataSource, UIPo
      func collectionView(collectionView: UICollectionView, didEndDisplayingCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath){
        
         if let docCell = cell as? DocumentCell {
+            
+            docCell.scrollView!.setZoomScale(1, animated: true)
             collectionView.removeGestureRecognizer(docCell.scrollView!.pinchGestureRecognizer!)
             collectionView.removeGestureRecognizer(docCell.scrollView!.panGestureRecognizer)
         }
