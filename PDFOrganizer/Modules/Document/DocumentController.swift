@@ -112,8 +112,13 @@ class DocumentController {
         return Int32(numberOfPages)
     }
     
-    func updatePageQualityWithImageView(imageView : UIImageView? , completion : (thumbnail : UIImage) -> Void) {
-    
+    func updatePageQualityWithDocument(documentObj: Document, page: Int, imageView: UIImageView?, completionUpdate: (thumbnail : UIImage) -> Void) {
+        
+        if let _ = imageView {
+            self.getDocumentPageThumbnailWithFileName(documentObj.fileName!, page: page, width: imageView!.frame.size.width, completion: { (thumbnail) -> Void in
+                completionUpdate(thumbnail: thumbnail)
+            })
+        }
     }
     
     func getDocumentPageThumbnailWithFileName(fileName: String?, page : Int ,width: CGFloat , completion:(thumbnail : UIImage) -> Void ){

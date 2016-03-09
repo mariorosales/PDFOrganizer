@@ -39,7 +39,6 @@ class CatalogueController: NSObject {
         } else {
             return ""
         }
-
     }
         
     func updateCatalogue(){

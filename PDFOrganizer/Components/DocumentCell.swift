@@ -15,7 +15,8 @@ class DocumentCell: UICollectionViewCell, UIScrollViewDelegate, UIGestureRecogni
     @IBOutlet  weak var thumbnailImageView : UIImageView?
     @IBOutlet weak var scrollView : UIScrollView?
     
-    var indexPath : NSIndexPath?
+    var document : Document?
+    var page : Int?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -38,11 +39,13 @@ class DocumentCell: UICollectionViewCell, UIScrollViewDelegate, UIGestureRecogni
     
     func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView?, atScale scale: CGFloat) {
         
-        DocumentController.sInstance.updatePageQualityWithImageView(self.thumbnailImageView, completion: { (thumbnail) -> Void in
-            if let _ = self.thumbnailImageView{
-                self.thumbnailImageView!.image = thumbnail
-            }
+        if let _ = self.document{
             
-        })
+            DocumentController.sInstance.updatePageQualityWithDocument(self.document!, page: self.page! , imageView: self.thumbnailImageView, completionUpdate: { (thumbnail) -> Void in
+                if let _ = self.thumbnailImageView{
+                    self.thumbnailImageView!.image = thumbnail
+                }
+            })
+        }
     }
 }
