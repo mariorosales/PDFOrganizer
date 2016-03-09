@@ -234,6 +234,7 @@
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
+                                                    <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="768" id="GBn-fb-oNQ"/>
                                                         <constraint firstItem="vks-bm-rSy" firstAttribute="top" secondItem="FD7-Ea-agt" secondAttribute="top" id="IpR-Uc-vqk"/>
@@ -254,7 +255,7 @@
                                             <constraint firstAttribute="trailing" secondItem="FD7-Ea-agt" secondAttribute="trailing" id="yOK-xd-Quh"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="scrollView" destination="FD7-Ea-agt" id="L8g-Dc-xdq"/>
+                                            <outlet property="scrollView" destination="FD7-Ea-agt" id="HiD-Jf-x8h"/>
                                             <outlet property="thumbnailImageView" destination="vks-bm-rSy" id="Evj-mo-Jcx"/>
                                         </connections>
                                     </collectionViewCell>

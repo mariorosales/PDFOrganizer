@@ -112,22 +112,23 @@ class DocumentController {
         return Int32(numberOfPages)
     }
     
-    func updatePageQualityWithDocument(documentObj: Document, page: Int, imageView: UIImageView?, completionUpdate: (thumbnail : UIImage) -> Void) {
+    func updatePageQualityWithDocument(documentObj: Document, page: Int, imageView: UIImageView?, completionUpdate: (thumbnail : UIImage?) -> Void) {
         
         if let _ = imageView {
-            self.getDocumentPageThumbnailWithFileName(documentObj.fileName!, page: page, width: imageView!.frame.size.width, completion: { (thumbnail) -> Void in
+            self.getDocumentPageThumbnailWithFileName(documentObj.fileName!, page: page, width: imageView!.frame.size.width, height: imageView!.frame.size.height, completion: { (thumbnail) -> Void in
                 completionUpdate(thumbnail: thumbnail)
             })
         }
     }
     
-    func getDocumentPageThumbnailWithFileName(fileName: String?, page : Int ,width: CGFloat , completion:(thumbnail : UIImage) -> Void ){
+    func getDocumentPageThumbnailWithFileName(fileName: String?, page : Int ,width: CGFloat, height: CGFloat , completion:(thumbnail : UIImage?) -> Void ){
         
         if let _ = fileName {
             
-            let documents = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+        let documents = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
             
-            let absolutePath = documents.stringByAppendingString("/" + fileName!)
+        let absolutePath = documents.stringByAppendingString("/" + fileName!)
+            
             dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), {
                 if let pdfDoc = CGPDFDocumentCreateWithURL(NSURL(fileURLWithPath: absolutePath)){
                     if  let myPageRef = CGPDFDocumentGetPage(pdfDoc, page){
@@ -142,18 +143,13 @@ class DocumentController {
                         
                         let context = UIGraphicsGetCurrentContext();
                         
-                        // White BG
                         CGContextSetRGBFillColor(context, 1.0,1.0,1.0,1.0);
                         CGContextFillRect(context,pageRect);
                         
                         CGContextSaveGState(context);
-                        
-                        // ***********
-                        // Next 3 lines makes the rotations so that the page look in the right direction
-                        // ***********
+
                         CGContextTranslateCTM(context, 0.0, pageRect.size.height);
-                        CGContextScaleCTM(context, 1.0, -1.0);
-                        CGContextConcatCTM(context, CGPDFPageGetDrawingTransform(myPageRef, CGPDFBox.MediaBox, pageRect, 0, true));
+                        CGContextScaleCTM(context, pdfScale, -pdfScale);
                         
                         CGContextDrawPDFPage(context, myPageRef);
                         CGContextRestoreGState(context);
@@ -165,17 +161,10 @@ class DocumentController {
                         dispatch_async(dispatch_get_main_queue(),{
                             
                             completion(thumbnail: thm)
-                            
                         })
-                        
-                        
                     }
                 }
             })
-        
         }
-        
-  
     }
-    
 }

@@ -44,7 +44,7 @@ class DocumentViewController: UIViewController, UICollectionViewDataSource, UIPo
     @IBAction func closeDocumentAction(sender : AnyObject?){
         
         if let _ = self.delegate{
-        
+    
             self.delegate!.dismissDocument()
         }
     
@@ -68,12 +68,17 @@ class DocumentViewController: UIViewController, UICollectionViewDataSource, UIPo
         
         if let _ = self.document{
             if let _ = self.document!.fileName{
-                DocumentController.sInstance.getDocumentPageThumbnailWithFileName(self.document!.fileName!, page: (indexPath.row+1), width: cell.frame.size.width, completion: { (thumbnail) -> Void in
+                DocumentController.sInstance.getDocumentPageThumbnailWithFileName(self.document!.fileName!, page: (indexPath.row+1), width: cell.frame.size.width, height: cell.frame.size.height, completion: { (thumbnail) -> Void in
                     
                     collectionView.addGestureRecognizer(cell.scrollView!.pinchGestureRecognizer!)
                     collectionView.addGestureRecognizer(cell.scrollView!.panGestureRecognizer)
                     
                     cell.thumbnailImageView!.image = thumbnail
+                    
+                    cell.document = self.document!
+                    var page : Int
+                    page = indexPath.row + Int(1)
+                    cell.page = page
                     
                 });
 

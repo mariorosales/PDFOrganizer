@@ -101,7 +101,7 @@ class CatalogueViewController: UIViewController, UICollectionViewDataSource, UIC
         
         let doc = self.catalogueController.documents![indexPath.row] as Document
 
-        DocumentController.sInstance.getDocumentPageThumbnailWithFileName(doc.fileName, page: 1, width: cell.frame.size.width, completion: { (thumbnail) -> Void in
+        DocumentController.sInstance.getDocumentPageThumbnailWithFileName(doc.fileName, page: 1, width: cell.frame.size.width, height: cell.frame.size.height, completion: { (thumbnail) -> Void in
             
             cell.thumbnailImageView!.image = thumbnail
             
