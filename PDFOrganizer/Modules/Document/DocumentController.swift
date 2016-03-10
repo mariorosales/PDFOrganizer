@@ -22,37 +22,36 @@ class DocumentController {
     func AddNewDocumentWithUrl(url : NSURL, completion: (result : Bool) -> Void)  {
     
         let documents = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
-        if let _ = url.pathComponents{
-            if let fileName = url.pathComponents!.last {
+        
+        if let _ = url.pathComponents , fileName = url.pathComponents!.last {
+            
+            dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), {
                 
-                dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), {
-                    
-                    let absolutePath = documents.stringByAppendingString("/" + fileName)
-                    
-                    if let encrypteddata = NSData(contentsOfURL: url) {
-                        if encrypteddata.writeToFile(absolutePath, atomically: true){
+                let absolutePath = documents.stringByAppendingString("/" + fileName)
+                
+                if let encrypteddata = NSData(contentsOfURL: url) {
+                    if encrypteddata.writeToFile(absolutePath, atomically: true){
+                        
+                        // Store in Core Data
+                        if let doc = StoreCoordinator.sInstance.createObjectOfType("Document") as! Document?{
                             
-                            // Store in Core Data
-                            if let doc = StoreCoordinator.sInstance.createObjectOfType("Document") as! Document?{
-                                
-                                doc.dateAdded = NSDate()
-                                doc.fileName = fileName
-                                doc.pages = NSNumber(int: self.getDocumentNumberOfPages(NSURL(fileURLWithPath: absolutePath)))
-                                StoreCoordinator.sInstance.saveContext()
-                                
-                                completion(result: true)
-                                return
-                            }
-                            completion(result: false)
-                            return
+                            doc.dateAdded = NSDate()
+                            doc.fileName = fileName
+                            doc.pages = NSNumber(int: self.getDocumentNumberOfPages(NSURL(fileURLWithPath: absolutePath)))
+                            StoreCoordinator.sInstance.saveContext()
                             
-                        } else {
-                            completion(result: false)
+                            completion(result: true)
                             return
                         }
+                        completion(result: false)
+                        return
+                        
+                    } else {
+                        completion(result: false)
+                        return
                     }
-                })
-            }
+                }
+            })
         }
     }
     
@@ -126,43 +125,41 @@ class DocumentController {
         if let _ = fileName {
             
         let documents = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
-            
         let absolutePath = documents.stringByAppendingString("/" + fileName!)
             
             dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), {
-                if let pdfDoc = CGPDFDocumentCreateWithURL(NSURL(fileURLWithPath: absolutePath)){
-                    if  let myPageRef = CGPDFDocumentGetPage(pdfDoc, page){
-                        
-                        var pageRect = CGPDFPageGetBoxRect(myPageRef, CGPDFBox.MediaBox)
-                        let pdfScale = width/pageRect.size.width;
-                        
-                        pageRect.size = CGSizeMake(pageRect.size.width*pdfScale, pageRect.size.height*pdfScale);
-                        pageRect.origin = CGPointZero;
-                        
-                        UIGraphicsBeginImageContext(pageRect.size);
-                        
-                        let context = UIGraphicsGetCurrentContext();
-                        
-                        CGContextSetRGBFillColor(context, 1.0,1.0,1.0,1.0);
-                        CGContextFillRect(context,pageRect);
-                        
-                        CGContextSaveGState(context);
+                
+                if  let pdfDoc = CGPDFDocumentCreateWithURL(NSURL(fileURLWithPath: absolutePath)), myPageRef = CGPDFDocumentGetPage(pdfDoc, page){
+                    
+                    var pageRect = CGPDFPageGetBoxRect(myPageRef, CGPDFBox.MediaBox)
+                    let pdfScale = width/pageRect.size.width;
+                    
+                    pageRect.size = CGSizeMake(pageRect.size.width*pdfScale, pageRect.size.height*pdfScale);
+                    pageRect.origin = CGPointZero;
+                    
+                    UIGraphicsBeginImageContext(pageRect.size);
+                    
+                    let context = UIGraphicsGetCurrentContext();
+                    
+                    CGContextSetRGBFillColor(context, 1.0,1.0,1.0,1.0);
+                    CGContextFillRect(context,pageRect);
+                    
+                    CGContextSaveGState(context);
 
-                        CGContextTranslateCTM(context, 0.0, pageRect.size.height);
-                        CGContextScaleCTM(context, pdfScale, -pdfScale);
+                    CGContextTranslateCTM(context, 0.0, pageRect.size.height);
+                    CGContextScaleCTM(context, pdfScale, -pdfScale);
+                    
+                    CGContextDrawPDFPage(context, myPageRef);
+                    CGContextRestoreGState(context);
+                    
+                    let thm = UIGraphicsGetImageFromCurrentImageContext();
+                    
+                    UIGraphicsEndImageContext();
+                    
+                    dispatch_async(dispatch_get_main_queue(),{
                         
-                        CGContextDrawPDFPage(context, myPageRef);
-                        CGContextRestoreGState(context);
-                        
-                        let thm = UIGraphicsGetImageFromCurrentImageContext();
-                        
-                        UIGraphicsEndImageContext();
-                        
-                        dispatch_async(dispatch_get_main_queue(),{
-                            
-                            completion(thumbnail: thm)
-                        })
-                    }
+                        completion(thumbnail: thm)
+                    })
                 }
             })
         }

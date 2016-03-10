@@ -49,10 +49,8 @@ class CatalogueController: NSObject {
             
             dispatch_async(dispatch_get_main_queue(),{
                 
-                if let _ = self.vController {
-                    if let collectionV = self.vController!.collectionView{
-                        collectionV.reloadData()
-                    }
+                if let _ = self.vController , collectionV = self.vController!.collectionView {
+                    collectionV.reloadData()
                 }
             })
         }

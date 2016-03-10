@@ -61,16 +61,11 @@ class DocumentCell: UICollectionViewCell, UIScrollViewDelegate, UIGestureRecogni
     func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView?, atScale scale: CGFloat) {
         
         if let _ = self.document{
-
-            DocumentController.sInstance.updatePageQualityWithDocument(self.document!, page: self.page! , imageView: self.thumbnailImageView, completionUpdate: { (thumbnail) -> Void in
-                if let _ = self.thumbnailImageView{
-                    
-                    if let _ = thumbnail {
-                        self.thumbnailImageView!.image = thumbnail!
-                    }
-                    
-                }
-            })
+            
+        DocumentController.sInstance.updatePageQualityWithDocument(self.document!, page: self.page! , imageView: self.thumbnailImageView, completionUpdate: { (thumbnail) -> Void in
+            if let _ = self.thumbnailImageView, _ = thumbnail{
+                self.thumbnailImageView!.image = thumbnail!
+            }})
         }
     }
     

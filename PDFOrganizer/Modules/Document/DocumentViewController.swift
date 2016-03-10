@@ -54,11 +54,10 @@ class DocumentViewController: UIViewController, UICollectionViewDataSource, UIPo
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        if let _ = self.document{
-            if let _ = self.document!.pages{
-                return Int(self.document!.pages!)
-            }
+        if let _ = self.document, _ = self.document!.pages{
+            return Int(self.document!.pages!)
         }
+        
         return 0
     }
     
@@ -66,22 +65,20 @@ class DocumentViewController: UIViewController, UICollectionViewDataSource, UIPo
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("documentPage", forIndexPath: indexPath) as! DocumentCell
         
-        if let _ = self.document{
-            if let _ = self.document!.fileName{
+        if let _ = self.document, _ = self.document!.fileName{
+            
+            cell.document = self.document!
+            var page : Int
+            page = indexPath.row + Int(1)
+            cell.page = page
+            
+            DocumentController.sInstance.getDocumentPageThumbnailWithFileName(self.document!.fileName!, page: (indexPath.row+1), width: cell.frame.size.width, height: cell.frame.size.height, completion: { (thumbnail) -> Void in
                 
-                cell.document = self.document!
-                var page : Int
-                page = indexPath.row + Int(1)
-                cell.page = page
+                collectionView.addGestureRecognizer(cell.scrollView!.pinchGestureRecognizer!)
+                collectionView.addGestureRecognizer(cell.scrollView!.panGestureRecognizer)
                 
-                DocumentController.sInstance.getDocumentPageThumbnailWithFileName(self.document!.fileName!, page: (indexPath.row+1), width: cell.frame.size.width, height: cell.frame.size.height, completion: { (thumbnail) -> Void in
-                    
-                    collectionView.addGestureRecognizer(cell.scrollView!.pinchGestureRecognizer!)
-                    collectionView.addGestureRecognizer(cell.scrollView!.panGestureRecognizer)
-                    
-                    cell.thumbnailImageView!.image = thumbnail
-                });
-            }
+                cell.thumbnailImageView!.image = thumbnail
+            });
         }
         return cell
     }
