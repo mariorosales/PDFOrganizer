@@ -68,24 +68,21 @@ class DocumentViewController: UIViewController, UICollectionViewDataSource, UIPo
         
         if let _ = self.document{
             if let _ = self.document!.fileName{
+                
+                cell.document = self.document!
+                var page : Int
+                page = indexPath.row + Int(1)
+                cell.page = page
+                
                 DocumentController.sInstance.getDocumentPageThumbnailWithFileName(self.document!.fileName!, page: (indexPath.row+1), width: cell.frame.size.width, height: cell.frame.size.height, completion: { (thumbnail) -> Void in
                     
                     collectionView.addGestureRecognizer(cell.scrollView!.pinchGestureRecognizer!)
                     collectionView.addGestureRecognizer(cell.scrollView!.panGestureRecognizer)
                     
                     cell.thumbnailImageView!.image = thumbnail
-                    
-                    cell.document = self.document!
-                    var page : Int
-                    page = indexPath.row + Int(1)
-                    cell.page = page
-                    
                 });
-
             }
         }
-
-
         return cell
     }
     
@@ -130,6 +127,14 @@ class DocumentViewController: UIViewController, UICollectionViewDataSource, UIPo
             self.selectedDocumentCell!.addGesture()
             self.selectedDocumentCell = nil
         }
+    }
+    
+    override func shouldAutorotate() -> Bool {
+        return true
+    }
+    
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return [UIInterfaceOrientationMask.Portrait , UIInterfaceOrientationMask.PortraitUpsideDown]
     }
 
 }
