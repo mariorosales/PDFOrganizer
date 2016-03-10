@@ -10,7 +10,7 @@ import UIKit
 
 class CatalogueViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, MenuViewControllerDelegate, DocumentViewControllerDelegate {
     
-    var catalogueController : CatalogueController = CatalogueController(vC: nil)
+    var controller : CatalogueController = CatalogueController(vC: nil)
     
     var documentViewController : DocumentViewController?
     
@@ -21,7 +21,7 @@ class CatalogueViewController: UIViewController, UICollectionViewDataSource, UIC
 
     override func viewDidLoad() {
         
-        self.catalogueController = CatalogueController(vC: self)
+        self.controller = CatalogueController(vC: self)
         super.viewDidLoad()
         
     }
@@ -88,8 +88,8 @@ class CatalogueViewController: UIViewController, UICollectionViewDataSource, UIC
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        if let _ = self.catalogueController.documents {
-            return self.catalogueController.documents!.count
+        if let _ = self.controller.documents {
+            return self.controller.documents!.count
         } else {
             return 0
         }
@@ -99,7 +99,7 @@ class CatalogueViewController: UIViewController, UICollectionViewDataSource, UIC
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("documentCell", forIndexPath: indexPath) as! CatalogueCell
         
-        let doc = self.catalogueController.documents![indexPath.row] as Document
+        let doc = self.controller.documents![indexPath.row] as Document
 
         DocumentController.sInstance.getDocumentPageThumbnailWithFileName(doc.fileName, page: 1, width: cell.frame.size.width, height: cell.frame.size.height, completion: { (thumbnail) -> Void in
             
@@ -116,7 +116,7 @@ class CatalogueViewController: UIViewController, UICollectionViewDataSource, UIC
         
         if let _ = self.documentViewController{
             
-            let doc = self.catalogueController.documents![indexPath.row] as Document
+            let doc = self.controller.documents![indexPath.row] as Document
 
             self.documentViewController!.loadDocument(doc)
             self.documentViewController!.delegate = self

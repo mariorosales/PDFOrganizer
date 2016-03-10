@@ -295,23 +295,6 @@
             </objects>
             <point key="canvasLocation" x="423" y="-382"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="1Gp-AO-mqp">
-            <objects>
-                <viewController id="TMh-rc-87i" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="0lI-Kf-xQq"/>
-                        <viewControllerLayoutGuide type="bottom" id="4X1-eY-osp"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="5cR-p2-uZj">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BDy-HL-fKD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-        </scene>
         <!--Tags View Controller-->
         <scene sceneID="3aF-LY-S0h">
             <objects>
@@ -375,6 +358,9 @@
                                                 <constraint firstAttribute="width" constant="183" id="y3X-dQ-x0e"/>
                                             </constraints>
                                             <state key="normal" title="Apply tags"/>
+                                            <connections>
+                                                <action selector="apllyTags:" destination="5nY-Vj-DR5" eventType="touchUpInside" id="GRt-E6-gri"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="0.5" colorSpace="calibratedRGB"/>
