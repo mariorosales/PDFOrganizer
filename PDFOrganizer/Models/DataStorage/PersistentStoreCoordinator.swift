@@ -98,7 +98,7 @@ class StoreCoordinator {
         
         do {
             let results =
-            try StoreCoordinator.sInstance.managedObjectContext.executeFetchRequest( NSFetchRequest(entityName: "Document"))
+            try StoreCoordinator.sInstance.managedObjectContext.executeFetchRequest( NSFetchRequest(entityName: tObject))
                 objs = results as! [NSManagedObject]
             } catch let error as NSError {
                 print("Could not fetch \(error), \(error.userInfo)")

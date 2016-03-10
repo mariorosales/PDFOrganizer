@@ -43,6 +43,8 @@
 		B57420011C8BD04C006BEC4D /* Tag+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5741FF61C8BD04C006BEC4D /* Tag+CoreDataProperties.swift */; };
 		B57420021C8BD04C006BEC4D /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5741FF71C8BD04C006BEC4D /* Tag.swift */; };
 		B57420031C8BD04C006BEC4D /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5741FF71C8BD04C006BEC4D /* Tag.swift */; };
+		B5BBF4DB1C920BA6003BB51B /* TagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BBF4DA1C920BA6003BB51B /* TagsViewController.swift */; };
+		B5BBF4DD1C920CF6003BB51B /* TagsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BBF4DC1C920CF6003BB51B /* TagsController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +84,8 @@
 		B5741FF41C8BD04C006BEC4D /* UserDocumentTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDocumentTag.swift; sourceTree = "<group>"; };
 		B5741FF61C8BD04C006BEC4D /* Tag+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Tag+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B5741FF71C8BD04C006BEC4D /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		B5BBF4DA1C920BA6003BB51B /* TagsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsViewController.swift; sourceTree = "<group>"; };
+		B5BBF4DC1C920CF6003BB51B /* TagsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +170,7 @@
 		B5741F8E1C8BA5B9006BEC4D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				B5BBF4D91C920B8D003BB51B /* Tags */,
 				B5741FE61C8BC521006BEC4D /* Document */,
 				B5741FDC1C8BA9C8006BEC4D /* Menu */,
 				B5741F8F1C8BA5B9006BEC4D /* Catalogue */,
@@ -245,6 +250,15 @@
 				B5741FF71C8BD04C006BEC4D /* Tag.swift */,
 			);
 			path = Tag;
+			sourceTree = "<group>";
+		};
+		B5BBF4D91C920B8D003BB51B /* Tags */ = {
+			isa = PBXGroup;
+			children = (
+				B5BBF4DA1C920BA6003BB51B /* TagsViewController.swift */,
+				B5BBF4DC1C920CF6003BB51B /* TagsController.swift */,
+			);
+			path = Tags;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -355,6 +369,7 @@
 				B51689CD1C8C3D38005C3346 /* DocumentController.swift in Sources */,
 				B51689D61C8CC442005C3346 /* DocumentViewController.swift in Sources */,
 				B5741FFE1C8BD04C006BEC4D /* UserDocumentTag.swift in Sources */,
+				B5BBF4DD1C920CF6003BB51B /* TagsController.swift in Sources */,
 				B5741FF81C8BD04C006BEC4D /* Document+CoreDataProperties.swift in Sources */,
 				B5741FDE1C8BA9EE006BEC4D /* MenuViewController.swift in Sources */,
 				B5741FFC1C8BD04C006BEC4D /* UserDocumentTag+CoreDataProperties.swift in Sources */,
@@ -365,6 +380,7 @@
 				B5741F6C1C8B8F9A006BEC4D /* AppDelegate.swift in Sources */,
 				B57420021C8BD04C006BEC4D /* Tag.swift in Sources */,
 				98F1811C1C8D8D4200AE82D0 /* CatalogueCell.swift in Sources */,
+				B5BBF4DB1C920BA6003BB51B /* TagsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -312,5 +312,110 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BDy-HL-fKD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
+        <!--Tags View Controller-->
+        <scene sceneID="3aF-LY-S0h">
+            <objects>
+                <viewController storyboardIdentifier="TagsViewController" id="5nY-Vj-DR5" customClass="TagsViewController" customModule="PDFOrganizer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Uic-Va-ijk"/>
+                        <viewControllerLayoutGuide type="bottom" id="zXQ-tz-5UI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ima-c1-Pdf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OFY-Y4-2hF">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="ITt-jf-7wS">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="62"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search tag or add one" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AlL-Vl-S5T">
+                                            <rect key="frame" x="8" y="11" width="495" height="40"/>
+                                            <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="0.5" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="gPT-Ho-Bjh"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="5nY-Vj-DR5" id="vhc-Bn-BYV"/>
+                                            </connections>
+                                        </textField>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QAk-I8-24A">
+                                            <rect key="frame" x="511" y="11" width="81" height="38"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="38" id="shV-Ie-m2v"/>
+                                            </constraints>
+                                            <state key="normal" title="Add Tag"/>
+                                            <connections>
+                                                <action selector="addTag:" destination="5nY-Vj-DR5" eventType="touchUpInside" id="Ant-lc-Kgz"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstItem="AlL-Vl-S5T" firstAttribute="top" secondItem="ITt-jf-7wS" secondAttribute="top" constant="11" id="5Yn-so-hlK"/>
+                                        <constraint firstItem="QAk-I8-24A" firstAttribute="top" secondItem="ITt-jf-7wS" secondAttribute="topMargin" constant="3" id="URY-bU-Q2J"/>
+                                        <constraint firstItem="QAk-I8-24A" firstAttribute="leading" secondItem="AlL-Vl-S5T" secondAttribute="trailing" constant="8" id="WlY-jX-7Ep"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="QAk-I8-24A" secondAttribute="trailing" id="XGe-aL-6Mt"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="AlL-Vl-S5T" secondAttribute="trailing" constant="89" id="XRA-eI-6Ra"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="AlL-Vl-S5T" secondAttribute="leading" id="ovn-4f-fQK"/>
+                                    </constraints>
+                                </view>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="Y4p-5K-iW2">
+                                    <rect key="frame" x="0.0" y="134" width="600" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yFf-EU-nQS">
+                                            <rect key="frame" x="208" y="3" width="183" height="38"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="38" id="dzE-rn-M2m"/>
+                                                <constraint firstAttribute="width" constant="183" id="y3X-dQ-x0e"/>
+                                            </constraints>
+                                            <state key="normal" title="Apply tags"/>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="0.5" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="yFf-EU-nQS" firstAttribute="centerX" secondItem="Y4p-5K-iW2" secondAttribute="centerX" id="5xV-Xa-7YO"/>
+                                        <constraint firstItem="yFf-EU-nQS" firstAttribute="centerY" secondItem="Y4p-5K-iW2" secondAttribute="centerY" id="jgp-jw-puX"/>
+                                    </constraints>
+                                </view>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TagCell" id="4zi-Fo-ae1">
+                                        <rect key="frame" x="0.0" y="90" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4zi-Fo-ae1" id="KHJ-x1-YVs">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="5nY-Vj-DR5" id="K8x-Mp-U77"/>
+                                    <outlet property="delegate" destination="5nY-Vj-DR5" id="tTj-BE-NHc"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="OFY-Y4-2hF" firstAttribute="top" secondItem="ima-c1-Pdf" secondAttribute="top" id="4Bl-lm-syu"/>
+                            <constraint firstItem="OFY-Y4-2hF" firstAttribute="leading" secondItem="ima-c1-Pdf" secondAttribute="leading" id="9SQ-M1-37c"/>
+                            <constraint firstAttribute="trailing" secondItem="OFY-Y4-2hF" secondAttribute="trailing" id="bUG-Hc-Owo"/>
+                            <constraint firstAttribute="bottom" secondItem="OFY-Y4-2hF" secondAttribute="bottom" id="qtW-3H-MSh"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="addTagButton" destination="QAk-I8-24A" id="SaF-Oz-UhP"/>
+                        <outlet property="tableView" destination="OFY-Y4-2hF" id="qKh-io-8Cq"/>
+                        <outlet property="textField" destination="AlL-Vl-S5T" id="dNU-tI-2xQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bdp-1a-2gQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-322" y="-796"/>
+        </scene>
     </scenes>
 </document>

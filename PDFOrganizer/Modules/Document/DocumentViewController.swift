@@ -98,22 +98,25 @@ class DocumentViewController: UIViewController, UICollectionViewDataSource, UIPo
     
     func longPressInPage(notification: NSNotification){
         
-        if let cell = notification.object as? DocumentCell {
+        if let documentPage = notification.object as? DocumentCell {
             
-            self.selectedDocumentCell = cell
+            self.selectedDocumentCell = documentPage
             
-            let tableViewController = UITableViewController()
-            tableViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
-            tableViewController.preferredContentSize = CGSizeMake(400, 400)
-            
-            presentViewController(tableViewController, animated: true, completion: nil)
-            
-            if let popoverPC = tableViewController.popoverPresentationController{
-                popoverPC.delegate = self
-                popoverPC.sourceView = cell.contentView
-                popoverPC.sourceRect = CGRectMake(cell.posX!,cell.posY!, 10, 10)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            if let tagsVC = storyboard.instantiateViewControllerWithIdentifier("TagsViewController") as? TagsViewController{
+                tagsVC.modalPresentationStyle = UIModalPresentationStyle.Popover
+                tagsVC.preferredContentSize = CGSizeMake(300, 400)
+                
+                tagsVC.documentPage = documentPage
+                
+                presentViewController(tagsVC, animated: true, completion: nil)
+
+                if let popoverPC = tagsVC.popoverPresentationController{
+                    popoverPC.delegate = self
+                    popoverPC.sourceView = documentPage.contentView
+                    popoverPC.sourceRect = CGRectMake(documentPage.posX!,documentPage.posY!, 10, 10)
+                }
             }
-        
         }
     }
     

@@ -11,14 +11,14 @@
     </entity>
     <entity name="UserDocumentTag" representedClassName=".UserDocumentTag" syncable="YES">
         <attribute name="page" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="positionX" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="positionY" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="positionX" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
+        <attribute name="positionY" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
         <relationship name="document" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Document" syncable="YES"/>
         <relationship name="tag" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tag" syncable="YES"/>
     </entity>
     <elements>
         <element name="Document" positionX="-63" positionY="-18" width="128" height="88"/>
         <element name="Tag" positionX="162" positionY="-18" width="128" height="73"/>
-        <element name="UserDocumentTag" positionX="45" positionY="-282" width="128" height="118"/>
+        <element name="UserDocumentTag" positionX="45" positionY="-282" width="128" height="120"/>
     </elements>
 </model>
