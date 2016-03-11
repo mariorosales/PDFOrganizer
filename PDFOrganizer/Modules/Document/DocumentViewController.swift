@@ -104,9 +104,9 @@ class DocumentViewController: UIViewController, UICollectionViewDataSource, UIPo
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             if let tagsVC = storyboard.instantiateViewControllerWithIdentifier("TagsViewController") as? TagsViewController{
+                
                 tagsVC.modalPresentationStyle = UIModalPresentationStyle.Popover
                 tagsVC.preferredContentSize = CGSizeMake(300, 400)
-                
                 tagsVC.documentPage = documentPage
                 
                 presentViewController(tagsVC, animated: true, completion: nil)
