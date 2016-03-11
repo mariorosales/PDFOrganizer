@@ -13,7 +13,6 @@ class TagsViewController:  UIViewController, UITableViewDelegate, UITableViewDat
     var controller : TagsController?
     var documentPage : DocumentCell?
     
-    var localContentArray : NSArray?
     var localContentSelected : NSMutableArray?
     
     @IBOutlet weak var tableView : UITableView?
@@ -27,7 +26,7 @@ class TagsViewController:  UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.controller = TagsController(vC: self)
+        self.controller = TagsController()
     }
     
     //MARK: - IBActions
@@ -62,14 +61,14 @@ class TagsViewController:  UIViewController, UITableViewDelegate, UITableViewDat
         
             if( cell.accessoryType == UITableViewCellAccessoryType.Checkmark){
                 cell.accessoryType = UITableViewCellAccessoryType.None
-                if let _ = self.localContentSelected{
-                    self.localContentSelected!.removeObject(self.localContentArray!.objectAtIndex(indexPath.row))
+                if let _ = self.controller,_ = self.controller!.tags{
+                    self.localContentSelected!.removeObject(self.controller!.tags!.objectAtIndex(indexPath.row))
                 }
                 
             } else {
                 cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-                if let _ = self.localContentSelected{
-                    self.localContentSelected!.addObject(self.localContentArray!.objectAtIndex(indexPath.row))
+                if let _ = self.controller, _ = self.controller!.tags{
+                    self.localContentSelected!.addObject(self.controller!.tags!.objectAtIndex(indexPath.row))
                 }
             }
         }
@@ -79,8 +78,8 @@ class TagsViewController:  UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if let _ = self.localContentArray{
-            return self.localContentArray!.count
+        if let _ = self.controller , _ = self.controller!.tags {
+            return self.controller!.tags!.count
         } else {
             return 0
         }

@@ -10,17 +10,9 @@ import Foundation
 
 class TagsController {
     
-    internal var vController : TagsViewController?
-    
     var tags : NSArray?
     
-    init(vC : TagsViewController?){
-        
-        if let _ = vC{
-            self.vController = vC!
-        } else {
-            self.vController = TagsViewController()
-        }
+    init(){
         self.loadTags()
     }
     
@@ -57,9 +49,6 @@ class TagsController {
             self.tags = allTags as! [Tag]
         } else {
             self.tags = [Tag]()
-        }
-        if let _ = self.vController, _ = self.vController!.localContentArray{
-            self.vController!.localContentArray = self.tags!
         }
     }
     
