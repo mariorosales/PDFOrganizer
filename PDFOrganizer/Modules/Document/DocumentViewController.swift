@@ -130,11 +130,11 @@ class DocumentViewController: UIViewController, UICollectionViewDataSource, UIPo
     }
     
     override func shouldAutorotate() -> Bool {
-        return false
+        return true
     }
     
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        return UIInterfaceOrientationMask.Portrait
+        return [.Portrait, .PortraitUpsideDown]
     }
 
 }
