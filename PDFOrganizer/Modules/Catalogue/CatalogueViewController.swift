@@ -128,11 +128,11 @@ class CatalogueViewController: UIViewController, UICollectionViewDataSource, UIC
     }
     
     override func shouldAutorotate() -> Bool {
-        return true
+        return false
     }
     
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        return [UIInterfaceOrientationMask.Portrait , UIInterfaceOrientationMask.PortraitUpsideDown]
+        return UIInterfaceOrientationMask.Portrait
     }
 }
 
