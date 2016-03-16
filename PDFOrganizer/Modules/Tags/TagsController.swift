@@ -46,7 +46,6 @@ class TagsController {
         completion()
     }
     
-    
     func loadTags(){
     
         if let allTags = StoreCoordinator.sInstance.getAllOfType("Tag"){
