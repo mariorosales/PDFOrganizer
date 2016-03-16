@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 public enum CellEventNotification : String {
 
     case LongPress
@@ -16,6 +18,7 @@ public enum CellEventNotification : String {
 
 class DocumentCell: UICollectionViewCell, UIScrollViewDelegate, UIGestureRecognizerDelegate {
     
+    let tagsOffset = CGFloat(21)
     
     @IBOutlet weak var thumbnailImageView : UIImageView?
     @IBOutlet weak var scrollView : UIScrollView?
@@ -109,10 +112,10 @@ class DocumentCell: UICollectionViewCell, UIScrollViewDelegate, UIGestureRecogni
                 if let _ = tag as? Tag{
                     let button = UIButton()
                     button.setTitle((tag as! Tag).tagName, forState: UIControlState.Normal)
-                    button.frame = CGRectMake(self.posX!, self.posY! + offset, 100, 20)
+                    button.frame = CGRectMake(self.posX!, self.posY! + offset, 100, self.tagsOffset-1)
                     button.backgroundColor = UIColor.redColor()
                     self.tagsView!.addSubview(button)
-                    offset += 21
+                    offset += self.tagsOffset
                 }
             }
         }
