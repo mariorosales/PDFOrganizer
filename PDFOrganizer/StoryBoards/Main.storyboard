@@ -226,22 +226,30 @@
                                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.5" maximumZoomScale="3" translatesAutoresizingMaskIntoConstraints="NO" id="FD7-Ea-agt">
                                                     <rect key="frame" x="0.0" y="10" width="768" height="984"/>
                                                     <subviews>
-                                                        <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vks-bm-rSy">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gym-UZ-d5A">
                                                             <rect key="frame" x="0.0" y="0.0" width="768" height="984"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="768" id="BlJ-c7-uA5"/>
-                                                                <constraint firstAttribute="height" constant="984" id="L4U-GA-uCy"/>
-                                                            </constraints>
-                                                        </imageView>
+                                                            <subviews>
+                                                                <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vks-bm-rSy">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="768" height="984"/>
+                                                                </imageView>
+                                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aJJ-3b-KSF">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="768" height="984"/>
+                                                                    <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
+                                                                </view>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </view>
                                                     </subviews>
                                                     <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="768" id="GBn-fb-oNQ"/>
-                                                        <constraint firstItem="vks-bm-rSy" firstAttribute="top" secondItem="FD7-Ea-agt" secondAttribute="top" id="IpR-Uc-vqk"/>
-                                                        <constraint firstAttribute="bottom" secondItem="vks-bm-rSy" secondAttribute="bottom" id="S2a-df-ON1"/>
-                                                        <constraint firstAttribute="trailing" secondItem="vks-bm-rSy" secondAttribute="trailing" id="YEI-ph-VFo"/>
-                                                        <constraint firstAttribute="height" constant="984" id="gRZ-u9-PCE"/>
-                                                        <constraint firstItem="vks-bm-rSy" firstAttribute="leading" secondItem="FD7-Ea-agt" secondAttribute="leading" id="r9P-cf-3A1"/>
+                                                        <constraint firstAttribute="height" constant="984" id="7Lf-EH-IP6"/>
+                                                        <constraint firstAttribute="bottom" secondItem="Gym-UZ-d5A" secondAttribute="bottom" id="7zq-Zk-9BF"/>
+                                                        <constraint firstItem="Gym-UZ-d5A" firstAttribute="leading" secondItem="FD7-Ea-agt" secondAttribute="leading" id="8sH-qz-lsB"/>
+                                                        <constraint firstItem="Gym-UZ-d5A" firstAttribute="centerY" secondItem="FD7-Ea-agt" secondAttribute="centerY" id="Cqy-rP-2uf"/>
+                                                        <constraint firstItem="Gym-UZ-d5A" firstAttribute="top" secondItem="FD7-Ea-agt" secondAttribute="top" id="HDS-cc-NC2"/>
+                                                        <constraint firstItem="Gym-UZ-d5A" firstAttribute="centerX" secondItem="FD7-Ea-agt" secondAttribute="centerX" id="JHZ-fQ-obx"/>
+                                                        <constraint firstAttribute="width" constant="768" id="Wv2-aA-gNN"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Gym-UZ-d5A" secondAttribute="trailing" id="eGm-GD-ECQ"/>
                                                     </constraints>
                                                 </scrollView>
                                             </subviews>
@@ -255,7 +263,9 @@
                                             <constraint firstAttribute="trailing" secondItem="FD7-Ea-agt" secondAttribute="trailing" id="yOK-xd-Quh"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="containerView" destination="Gym-UZ-d5A" id="RNN-pr-ye1"/>
                                             <outlet property="scrollView" destination="FD7-Ea-agt" id="HiD-Jf-x8h"/>
+                                            <outlet property="tagsView" destination="aJJ-3b-KSF" id="wve-vz-7q2"/>
                                             <outlet property="thumbnailImageView" destination="vks-bm-rSy" id="Evj-mo-Jcx"/>
                                         </connections>
                                     </collectionViewCell>

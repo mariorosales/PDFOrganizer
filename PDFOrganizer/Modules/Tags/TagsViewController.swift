@@ -13,7 +13,6 @@ class TagsViewController:  UIViewController, UITableViewDelegate, UITableViewDat
     var controller : TagsController?
     var documentPage : DocumentCell?
     
-    var localContentSelected : NSMutableArray?
     
     @IBOutlet weak var tableView : UITableView?
     @IBOutlet weak var textField : UITextField?
@@ -21,22 +20,22 @@ class TagsViewController:  UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.localContentSelected = NSMutableArray()
+        self.controller = TagsController()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.controller = TagsController()
     }
     
     //MARK: - IBActions
     
     @IBAction func apllyTags(sender : AnyObject?){
         
-        if let _ = self.controller, _ = self.documentPage, let _ = self.localContentSelected{
-            self.controller!.createUserDocumentTagsWith(self.localContentSelected!, documentPage: self.documentPage!, completion: { () -> Void in
+        if let _ = self.controller, _ = self.documentPage, let _ = self.controller!.selectedTags{
+            self.controller!.createUserDocumentTagsWith(self.controller!.selectedTags!, documentPage: self.documentPage!, completion: { () -> Void in
+
                 self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                    
+                    self.documentPage!.addGesture()
                 })
             })
         }
@@ -50,6 +49,7 @@ class TagsViewController:  UIViewController, UITableViewDelegate, UITableViewDat
                     self.tableView!.reloadData()
                 }
             })
+            self.textField!.resignFirstResponder()
         }
     }
     
@@ -61,14 +61,14 @@ class TagsViewController:  UIViewController, UITableViewDelegate, UITableViewDat
         
             if( cell.accessoryType == UITableViewCellAccessoryType.Checkmark){
                 cell.accessoryType = UITableViewCellAccessoryType.None
-                if let _ = self.controller,_ = self.controller!.tags{
-                    self.localContentSelected!.removeObject(self.controller!.tags!.objectAtIndex(indexPath.row))
+                if let _ = self.controller,_ = self.controller!.tags, _ = self.controller!.selectedTags {
+                    self.controller!.selectedTags!.removeObject(self.controller!.tags!.objectAtIndex(indexPath.row))
                 }
                 
             } else {
                 cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-                if let _ = self.controller, _ = self.controller!.tags{
-                    self.localContentSelected!.addObject(self.controller!.tags!.objectAtIndex(indexPath.row))
+                if let _ = self.controller, _ = self.controller!.tags, _ = self.controller!.selectedTags{
+                    self.controller!.selectedTags!.addObject(self.controller!.tags!.objectAtIndex(indexPath.row))
                 }
             }
         }

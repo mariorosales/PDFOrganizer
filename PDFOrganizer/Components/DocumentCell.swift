@@ -17,15 +17,13 @@ public enum CellEventNotification : String {
 class DocumentCell: UICollectionViewCell, UIScrollViewDelegate, UIGestureRecognizerDelegate {
     
     
-    @IBOutlet  weak var thumbnailImageView : UIImageView?
+    @IBOutlet weak var thumbnailImageView : UIImageView?
     @IBOutlet weak var scrollView : UIScrollView?
-    
+    @IBOutlet weak var tagsView : UIView?
+    @IBOutlet weak var containerView : UIView?
     
     var document : Document?
     var page : Int?
-    
-    var relativeX : CGFloat?
-    var relativeY : CGFloat?
     
     var posX : CGFloat?
     var posY : CGFloat?
@@ -50,11 +48,15 @@ class DocumentCell: UICollectionViewCell, UIScrollViewDelegate, UIGestureRecogni
     
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         
-        return self.thumbnailImageView
+        return self.containerView
     }
     
     func scrollViewDidZoom(scrollView: UIScrollView) {
-        
+   
+        if let _ = self.tagsView{
+            self.tagsView!.setNeedsLayout()
+            self.tagsView!.updateConstraintsIfNeeded()
+        }
    
     }
     
@@ -72,14 +74,9 @@ class DocumentCell: UICollectionViewCell, UIScrollViewDelegate, UIGestureRecogni
     func longPressAction(gesture : UILongPressGestureRecognizer){
         
         if let _ = self.thumbnailImageView {
-            
-            let width = self.thumbnailImageView!.frame.size.width
-            let height = self.thumbnailImageView!.frame.size.height
+
             self.posX = gesture.locationInView(self).x
             self.posY = gesture.locationInView(self).y
-            
-            self.relativeX = (self.posX!/width) * self.scrollView!.zoomScale
-            self.relativeY = (self.posY!/height) * self.scrollView!.zoomScale
             
             for recognizer in self.gestureRecognizers! {
                 self.removeGestureRecognizer(recognizer as UIGestureRecognizer)
@@ -92,5 +89,19 @@ class DocumentCell: UICollectionViewCell, UIScrollViewDelegate, UIGestureRecogni
     
     func postNotificationWithPosition(cell :DocumentCell){
         NSNotificationCenter.defaultCenter().postNotificationName(CellEventNotification.LongPress.rawValue, object: cell)
+    }
+    
+    func showNewTags(tags:NSArray?){
+        if let _ = tags, _ = self.posX, _ = self.posY {
+            for tag in tags!{
+                if let _ = tag as? Tag{
+                    let button = UIButton()
+                    button.setTitle((tag as! Tag).tagName, forState: UIControlState.Normal)
+                    button.frame = CGRectMake(self.posX!, self.posY!, 100, 20)
+                    button.backgroundColor = UIColor.redColor()
+                    self.tagsView!.addSubview(button)
+                }
+            }
+        }
     }
 }

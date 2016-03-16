@@ -11,8 +11,10 @@ import Foundation
 class TagsController {
     
     var tags : NSArray?
-    
+    var selectedTags : NSMutableArray?
+
     init(){
+        self.selectedTags = NSMutableArray()
         self.loadTags()
     }
     
@@ -30,18 +32,20 @@ class TagsController {
         
         for tag in tags{
             if let _ = tag as? Tag , uDocTag = StoreCoordinator.sInstance.createObjectOfType("UserDocumentTag") as! UserDocumentTag?{
-                if let _ = documentPage.relativeY, _ = documentPage.relativeY, _ = documentPage.page{
+                if let _ = documentPage.posX, _ = documentPage.posY, _ = documentPage.page{
                     uDocTag.document = documentPage.document
                     uDocTag.tag = tag as? Tag
-                    uDocTag.positionX = documentPage.relativeX!
-                    uDocTag.positionY = documentPage.relativeY!
+                    uDocTag.positionX = documentPage.posX!
+                    uDocTag.positionY = documentPage.posY!
                     uDocTag.page = documentPage.page!
                 }
             }
         }
         StoreCoordinator.sInstance.saveContext()
+        documentPage.showNewTags(tags)
         completion()
     }
+    
     
     func loadTags(){
     

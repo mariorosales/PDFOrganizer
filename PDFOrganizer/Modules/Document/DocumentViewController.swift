@@ -11,7 +11,6 @@ import UIKit
 protocol DocumentViewControllerDelegate{
     
     func dismissDocument()
-    
 }
 
 class DocumentViewController: UIViewController, UICollectionViewDataSource, UIPopoverPresentationControllerDelegate {
@@ -36,7 +35,6 @@ class DocumentViewController: UIViewController, UICollectionViewDataSource, UIPo
             self.collectionView!.reloadData()
             self.collectionView!.setContentOffset(CGPointZero, animated: false)
         }
-        
     }
     
     //MARK: - IBActions
@@ -44,10 +42,8 @@ class DocumentViewController: UIViewController, UICollectionViewDataSource, UIPo
     @IBAction func closeDocumentAction(sender : AnyObject?){
         
         if let _ = self.delegate{
-    
             self.delegate!.dismissDocument()
         }
-    
     }
     
     //MARK: - UICollectionViewDataSource
@@ -91,7 +87,6 @@ class DocumentViewController: UIViewController, UICollectionViewDataSource, UIPo
             collectionView.removeGestureRecognizer(docCell.scrollView!.pinchGestureRecognizer!)
             collectionView.removeGestureRecognizer(docCell.scrollView!.panGestureRecognizer)
         }
-        
     }
     
     //MARK: - Notification Method
