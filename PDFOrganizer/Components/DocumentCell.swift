@@ -41,6 +41,15 @@ class DocumentCell: UICollectionViewCell, UIScrollViewDelegate, UIGestureRecogni
 
     }
     
+    override func prepareForReuse(){
+        super.prepareForReuse()
+        if let _ = self.tagsView{
+            for view in self.tagsView!.subviews{
+                view.removeFromSuperview()
+            }
+        }
+    }
+    
     func addGesture(){
         self.gesture = UILongPressGestureRecognizer(target: self, action: "longPressAction:")
         self.addGestureRecognizer(self.gesture!)
@@ -92,14 +101,18 @@ class DocumentCell: UICollectionViewCell, UIScrollViewDelegate, UIGestureRecogni
     }
     
     func showNewTags(tags:NSArray?){
+        
+        var offset = CGFloat(0)
+        
         if let _ = tags, _ = self.posX, _ = self.posY {
             for tag in tags!{
                 if let _ = tag as? Tag{
                     let button = UIButton()
                     button.setTitle((tag as! Tag).tagName, forState: UIControlState.Normal)
-                    button.frame = CGRectMake(self.posX!, self.posY!, 100, 20)
+                    button.frame = CGRectMake(self.posX!, self.posY! + offset, 100, 20)
                     button.backgroundColor = UIColor.redColor()
                     self.tagsView!.addSubview(button)
+                    offset += 21
                 }
             }
         }

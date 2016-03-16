@@ -93,7 +93,15 @@ class TagsViewController:  UIViewController, UITableViewDelegate, UITableViewDat
             cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "TagCell")
         }
         
-        if let _ = self.controller, _ = self.controller!.tags, tag = self.controller!.tags![indexPath.row] as? Tag{
+        
+        if let _ = cell, _ = self.controller, _ = self.controller!.tags, tag = self.controller!.tags![indexPath.row] as? Tag{
+            if (self.controller!.selectedTags!.containsObject(tag)){
+                cell!.accessoryType = UITableViewCellAccessoryType.Checkmark
+            } else {
+                cell!.accessoryType = UITableViewCellAccessoryType.None
+
+            }
+
             cell!.textLabel!.text = tag.tagName!
         }
         return cell!
