@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		980BB6151C9AE33D0034FB3F /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 980BB6131C9AE33D0034FB3F /* Fabric.framework */; };
+		980BB6161C9AE33D0034FB3F /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 980BB6141C9AE33D0034FB3F /* Crashlytics.framework */; };
 		98F1811C1C8D8D4200AE82D0 /* CatalogueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F1811B1C8D8D4200AE82D0 /* CatalogueCell.swift */; };
 		B51689CA1C8BD65D005C3346 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B51689C81C8BD65D005C3346 /* LaunchScreen.storyboard */; };
 		B51689CB1C8BD65D005C3346 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B51689C91C8BD65D005C3346 /* Main.storyboard */; };
@@ -58,6 +60,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		980BB6131C9AE33D0034FB3F /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		980BB6141C9AE33D0034FB3F /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		98F1811B1C8D8D4200AE82D0 /* CatalogueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogueCell.swift; sourceTree = "<group>"; };
 		B51689C81C8BD65D005C3346 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B51689C91C8BD65D005C3346 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -94,6 +98,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B51689D01C8C4357005C3346 /* CoreGraphics.framework in Frameworks */,
+				980BB6161C9AE33D0034FB3F /* Crashlytics.framework in Frameworks */,
+				980BB6151C9AE33D0034FB3F /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +153,8 @@
 		B5741F6A1C8B8F9A006BEC4D /* PDFOrganizer */ = {
 			isa = PBXGroup;
 			children = (
+				980BB6131C9AE33D0034FB3F /* Fabric.framework */,
+				980BB6141C9AE33D0034FB3F /* Crashlytics.framework */,
 				B51689D11C8C5E54005C3346 /* Components */,
 				B51689C71C8BD65D005C3346 /* StoryBoards */,
 				B5741FC91C8BA973006BEC4D /* Models */,
@@ -271,6 +279,7 @@
 				B5741F641C8B8F9A006BEC4D /* Sources */,
 				B5741F651C8B8F9A006BEC4D /* Frameworks */,
 				B5741F661C8B8F9A006BEC4D /* Resources */,
+				980BB6121C9AE2FC0034FB3F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -356,6 +365,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		980BB6121C9AE2FC0034FB3F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run c3c5cf2da215ea7d7a153688595128fff52d52f8 e54e73adfde45b4d749651c6ffd99a69133d64a4f8ebb85490b37856331266c7";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B5741F641C8B8F9A006BEC4D /* Sources */ = {
@@ -509,6 +534,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PDFOrganizer",
+				);
 				INFOPLIST_FILE = PDFOrganizer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -525,6 +554,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PDFOrganizer",
+				);
 				INFOPLIST_FILE = PDFOrganizer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
