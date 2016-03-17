@@ -8,12 +8,29 @@
 
 import Foundation
 
-class TagsController {
-    
-    var tags : NSArray?
-    var selectedTags : NSMutableArray?
+protocol TagsControllerProtocol{
 
-    init(){
+    var tags : NSArray? {set get}
+    var selectedTags : NSMutableArray? {set get}
+    init(tagsDidLoad : ((TagsControllerProtocol) -> Void)?)
+    func createTagWithTitle(title: String, completion: (Void) -> Void)
+    func createUserDocumentTagsWith(tags: NSMutableArray, documentPage: DocumentCell, completion : (Void) -> Void)
+}
+
+class TagsController : TagsControllerProtocol {
+    
+    var tags : NSArray? {
+        didSet{
+            if let _ = self.tagsDidLoad{
+                self.tagsDidLoad!(self)
+            }
+        }
+    }
+    var selectedTags : NSMutableArray?
+    var tagsDidLoad : ((TagsControllerProtocol) -> Void)?
+    
+    required init(tagsDidLoad : ((TagsControllerProtocol) -> Void)?){
+        self.tagsDidLoad = tagsDidLoad
         self.selectedTags = NSMutableArray()
         self.loadTags()
     }

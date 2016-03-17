@@ -10,7 +10,7 @@ import UIKit
 
 class TagsViewController:  UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
-    var controller : TagsController?
+    var controller : TagsControllerProtocol?
     var documentPage : DocumentCell?
     
     
@@ -20,7 +20,12 @@ class TagsViewController:  UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.controller = TagsController()
+        self.controller = TagsController(tagsDidLoad: { (tController) -> Void in
+            if let _ = self.tableView {
+                self.tableView!.dataSource = self
+                self.tableView!.delegate = self
+            }
+        })
     }
     
     override func viewWillAppear(animated: Bool) {

@@ -10,34 +10,35 @@ import Foundation
 import UIKit
 import CoreData
 
-class MenuController {
-    
-    internal var vController :MenuViewController
+protocol MenuControllerProtocol{
 
-    init(vC : MenuViewController?){
-        
-        if let _ = vC{
-            self.vController = vC!
-        } else {
-            self.vController = MenuViewController()
+    var menuOptionSelected : MenuOptions {get set}
+    
+    var menuOptionSelectedDidChange : ((MenuOptions)-> Void)? {get set}
+    var menuOptionSelectedWillChange : ((MenuOptions)-> Void)? {get set}
+    
+}
+
+class MenuController : MenuControllerProtocol{
+    
+    var menuOptionSelectedDidChange : ((MenuOptions)-> Void)?
+    var menuOptionSelectedWillChange : ((MenuOptions)-> Void)?
+    
+    var menuOptionSelected : MenuOptions {
+        willSet {
+            if let _ = self.menuOptionSelectedWillChange {
+                self.menuOptionSelectedWillChange!(self.menuOptionSelected)
+            }
+        }
+        didSet{
+            if let _ = self.menuOptionSelectedDidChange {
+                self.menuOptionSelectedDidChange!(self.menuOptionSelected)
+            }
         }
     }
     
-    func MenuControllerDidShow(){
-    
-    }
-    
-    func MenuControllerDidHide(){
-        
-        if let tView = self.vController.tableView {
-            tView.reloadData()
-        }
-       
-    }
-    
-    func MenuOptionSelected(optionSelected : MenuOptions){
-    
-    
+    init(){
+        self.menuOptionSelected = .MenuOptionNone
     }
     
 }

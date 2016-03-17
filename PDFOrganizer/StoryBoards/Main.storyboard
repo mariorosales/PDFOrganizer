@@ -389,10 +389,6 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="5nY-Vj-DR5" id="K8x-Mp-U77"/>
-                                    <outlet property="delegate" destination="5nY-Vj-DR5" id="tTj-BE-NHc"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
