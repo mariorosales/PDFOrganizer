@@ -12,11 +12,7 @@ protocol TagsControllerProtocol{
 
     var tags : NSArray? {set get}
     var selectedTags : NSMutableArray? {set get}
-    
-    var tagsDidLoad : ((TagsControllerProtocol) -> Void)? {get set}
-    
     init(tagsDidLoad : ((TagsControllerProtocol) -> Void)?)
-    
     func createTagWithTitle(title: String, completion: (Void) -> Void)
     func createUserDocumentTagsWith(tags: NSMutableArray, documentPage: DocumentCell, completion : (Void) -> Void)
 }
