@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PDFOrganizer/Modules/Tags/TagsController.swift"
-            timestampString = "479871112.985424"
+            filePath = "PDFOrganizer/Modules/Catalogue/CatalogueViewController.swift"
+            timestampString = "480553036.288685"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "loadTags()"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "MenuDidShow(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,14 +25,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PDFOrganizer/Modules/Tags/TagsController.swift"
-            timestampString = "479871112.985424"
+            filePath = "PDFOrganizer/Modules/Catalogue/CatalogueViewController.swift"
+            timestampString = "480553592.308553"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "TagsController"
-            landmarkType = "3">
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "MenuDidHide(_:)"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -41,14 +41,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PDFOrganizer/Modules/Tags/TagsController.swift"
-            timestampString = "479871112.985424"
+            filePath = "PDFOrganizer/Modules/Menu/MenuViewController.swift"
+            timestampString = "480554507.885194"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
-            landmarkName = "TagsController"
-            landmarkType = "3">
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "openCloseButtonPresed(_:)"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

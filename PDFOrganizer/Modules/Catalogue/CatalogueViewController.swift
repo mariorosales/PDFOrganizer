@@ -40,8 +40,11 @@ class CatalogueViewController: UIViewController, UICollectionViewDataSource, UIC
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if(segue.identifier == "LoadMenu"){
-            if let menuVC = segue.destinationViewController as? MenuViewController{
-                menuVC.delegate = self
+            
+            if let navigation = segue.destinationViewController as? UINavigationController{
+                if let menuVC = navigation.viewControllers.first as? MenuViewController{
+                    menuVC.delegate = self
+                }
             }
 
         } else if(segue.identifier == "LoadDocument"){
@@ -66,9 +69,8 @@ class CatalogueViewController: UIViewController, UICollectionViewDataSource, UIC
     func MenuDidHide(menu: MenuViewController) {
         
         if let _ = self.menuConstraint{
-            if let _ = menu.titleLabel {
-                self.menuConstraint!.constant = -menu.titleLabel!.frame.size.width
-            }
+                self.menuConstraint!.constant = -(menu.view.frame.size.width-50)
+
         }
     }
     

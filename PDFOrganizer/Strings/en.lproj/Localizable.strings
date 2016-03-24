@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  PDFOrganizer
+
+  Created by iMario on 24/3/16.
+  Copyright © 2016 Mario. All rights reserved.
+*/
+
+
+"MenuOptionSearch" = "Search";
+"MenuOptionRecent" = "Recent";
+"MenuOptionCatalogue" = "Catalogue";

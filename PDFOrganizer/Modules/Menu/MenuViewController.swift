@@ -9,11 +9,7 @@
 import UIKit
 
 public enum MenuStates{
-    case MenuOpen, MenuClose
-}
-
-public enum MenuOptions : String{
-    case MenuOptionSearch, MenuOptionRecent, MenuOptionCatalogue, MenuOptionNone
+    case MenuOpen, MenuClose, MenuInit
 }
 
 protocol MenuViewControllerDelegate {
@@ -27,65 +23,86 @@ class MenuViewController : UIViewController, UITableViewDataSource, UITableViewD
     var controller: MenuControllerProtocol?
     
     var delegate: MenuViewControllerDelegate?
-    var menuStatus : MenuStates = .MenuClose
+    var menuStatus : MenuStates = .MenuInit
     
-    @IBOutlet weak var openCloseButton : UIButton?
     @IBOutlet weak var menuOptionsView : UIView?
     @IBOutlet weak var tableView : UITableView?
-    @IBOutlet weak var titleLabel : UILabel?
+
+    var menuOptionsReady : ((Void) -> Void)?
+    var optionDidChange : ((MenuOptions) -> Void)?
+    var optionWillChange : ((MenuOptions) -> Void)?
+    
+    required init(coder aDecoder: NSCoder) {
         
+        super.init(coder: aDecoder)!
+
+        self.menuOptionsReady = { () -> Void in
+        
+            if let _ = self.tableView {
+                self.tableView!.delegate = self
+                self.tableView!.dataSource = self
+            }
+        }
+        
+        self.optionDidChange = { (optionSelected : MenuOptions) -> Void in
+            NSLog("%@", optionSelected.rawValue)
+            
+        }
+        
+        self.optionWillChange = { (optionSelected : MenuOptions) -> Void in
+            NSLog("%@", optionSelected.rawValue)
+        }
+        
+
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.controller = MenuController()
-        if let _ = self.controller{
-            self.controller!.menuOptionSelectedDidChange = optionDidChange
-            self.controller!.menuOptionSelectedWillChange = optionWillChange
+        if let _ = self.menuOptionsReady{
+            self.controller = MenuController(optionsReady: self.menuOptionsReady!)
+            if let _ = self.controller{
+                self.controller!.menuOptionSelectedDidChange = self.optionDidChange
+                self.controller!.menuOptionSelectedWillChange = self.optionWillChange
+            }
         }
+    
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.hideMenu { () -> Void in
-            if let _ = self.tableView{
-                self.tableView!.reloadData()
+        if (self.menuStatus == .MenuInit){
+            self.hideMenu  { () -> Void in
+                if let _ = self.tableView{
+                    self.tableView!.reloadData()
+                }
             }
         }
     }
-    
-    let optionDidChange : ((MenuOptions) -> Void) = { (optionSelected : MenuOptions) -> Void in
-        NSLog("%@", optionSelected.rawValue)
-        
-    }
-    
-    let optionWillChange : ((MenuOptions) -> Void) =  { (optionSelected : MenuOptions) -> Void in
-        NSLog("%@", optionSelected.rawValue)
-    }
+
     
     //MARK: - Status Actions 
     
     func hideMenu(completion:(Void) -> Void ){
         
-        if let _ = self.openCloseButton{
-            UIView.animateWithDuration(0.3, animations: { () -> Void in
+        UIView.animateWithDuration(0.3, animations: { () -> Void in
+            
+            if let _ = self.delegate{
+                self.delegate!.MenuDidHide(self)
+            }
+            
+            if let _ = self.menuOptionsView{
+                self.menuOptionsView!.alpha = 0.0
+            }
+            
+            }, completion: { (complete) -> Void in
                 
-                if let _ = self.delegate{
-                    self.delegate!.MenuDidHide(self)
+                if (complete){
+                    completion()
                 }
-                
-                self.openCloseButton!.setTitle(">", forState: UIControlState.Normal)
-                if let _ = self.menuOptionsView{
-                    self.menuOptionsView!.alpha = 0.0
-                }
-                
-                }, completion: { (complete) -> Void in
-                    
-                    if (complete){
-                        completion()
-                    }
-            })
-        }
+        })
+        
     }
     
     func showMenu(completion: (Void) -> Void){
@@ -94,10 +111,6 @@ class MenuViewController : UIViewController, UITableViewDataSource, UITableViewD
             
             if let _ = self.delegate{
                 self.delegate!.MenuDidShow(self)
-            }
-            
-            if let _ = self.openCloseButton{
-                self.openCloseButton!.setTitle("<", forState: UIControlState.Normal)
             }
 
             if let _ = self.menuOptionsView{
@@ -123,7 +136,7 @@ class MenuViewController : UIViewController, UITableViewDataSource, UITableViewD
                 self.menuStatus = .MenuClose
             })
             break
-        case .MenuClose:
+        case .MenuInit, .MenuClose:
             
             self.showMenu({ () -> Void in
                 self.menuStatus = .MenuOpen
@@ -150,23 +163,26 @@ class MenuViewController : UIViewController, UITableViewDataSource, UITableViewD
     }
 
     //MARK: - UITableViewDataSource
-    
+
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return 5
+
+        if let _ = self.controller{
+            return self.controller!.menuOptions.count
+        } else {
+            return 0
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("CELL")
+        var cell = tableView.dequeueReusableCellWithIdentifier("menuCell")
         
         if cell == nil {
-            cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL")
+            cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "menuCell")
         }
         
-        if let _ = cell{
-            cell!.textLabel!.text = "Baking Soda"
-            cell!.detailTextLabel!.text = "1/2 cup"
+        if let _ = cell, _ = self.controller {
+            cell!.textLabel!.text = self.controller!.menuOptions[indexPath.row].label
         }
 
         return cell!

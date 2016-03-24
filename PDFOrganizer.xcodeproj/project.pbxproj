@@ -45,6 +45,7 @@
 		B57420011C8BD04C006BEC4D /* Tag+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5741FF61C8BD04C006BEC4D /* Tag+CoreDataProperties.swift */; };
 		B57420021C8BD04C006BEC4D /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5741FF71C8BD04C006BEC4D /* Tag.swift */; };
 		B57420031C8BD04C006BEC4D /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5741FF71C8BD04C006BEC4D /* Tag.swift */; };
+		B5928B221CA4A6FD001044BB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5928B201CA4A6FD001044BB /* Localizable.strings */; };
 		B5BBF4DB1C920BA6003BB51B /* TagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BBF4DA1C920BA6003BB51B /* TagsViewController.swift */; };
 		B5BBF4DD1C920CF6003BB51B /* TagsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BBF4DC1C920CF6003BB51B /* TagsController.swift */; };
 /* End PBXBuildFile section */
@@ -88,6 +89,7 @@
 		B5741FF41C8BD04C006BEC4D /* UserDocumentTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDocumentTag.swift; sourceTree = "<group>"; };
 		B5741FF61C8BD04C006BEC4D /* Tag+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Tag+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B5741FF71C8BD04C006BEC4D /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		B5928B211CA4A6FD001044BB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B5BBF4DA1C920BA6003BB51B /* TagsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsViewController.swift; sourceTree = "<group>"; };
 		B5BBF4DC1C920CF6003BB51B /* TagsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -153,6 +155,7 @@
 		B5741F6A1C8B8F9A006BEC4D /* PDFOrganizer */ = {
 			isa = PBXGroup;
 			children = (
+				B5928B1D1CA4A69D001044BB /* Strings */,
 				980BB6131C9AE33D0034FB3F /* Fabric.framework */,
 				980BB6141C9AE33D0034FB3F /* Crashlytics.framework */,
 				B51689D11C8C5E54005C3346 /* Components */,
@@ -260,6 +263,14 @@
 			path = Tag;
 			sourceTree = "<group>";
 		};
+		B5928B1D1CA4A69D001044BB /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				B5928B201CA4A6FD001044BB /* Localizable.strings */,
+			);
+			path = Strings;
+			sourceTree = "<group>";
+		};
 		B5BBF4D91C920B8D003BB51B /* Tags */ = {
 			isa = PBXGroup;
 			children = (
@@ -352,6 +363,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B51689CB1C8BD65D005C3346 /* Main.storyboard in Resources */,
+				B5928B221CA4A6FD001044BB /* Localizable.strings in Resources */,
 				B5741F761C8B8F9A006BEC4D /* Assets.xcassets in Resources */,
 				B51689CA1C8BD65D005C3346 /* LaunchScreen.storyboard in Resources */,
 			);
@@ -440,6 +452,17 @@
 			targetProxy = B5741F801C8B8F9A006BEC4D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B5928B201CA4A6FD001044BB /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B5928B211CA4A6FD001044BB /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		B5741F861C8B8F9A006BEC4D /* Debug */ = {
